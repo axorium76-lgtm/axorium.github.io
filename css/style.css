@@ -79,3 +79,26 @@ footer {
 .nav-links a:hover {
     color: #C6A75E;
     }
+.tools-section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.tools-section h1 {
+    font-size: 36px;
+    color: #C6A75E;
+    margin-bottom: 10px;
+}
+
+.tool-card {
+    background-color: #111116;
+    margin: 30px auto;
+    padding: 30px;
+    max-width: 500px;
+    border: 1px solid #1F2937;
+    border-radius: 8px;
+}
+
+.tool-card h2 {
+    margin-bottom: 10px;
+}
