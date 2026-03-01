@@ -53,8 +53,28 @@ function calculateSIP() {
 
     let maturity = monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
 
-    document.getElementById("result").innerText =
-        "Estimated Maturity Value: ₹ " + maturity.toFixed(2);
+    function calculateSIP() {
+    let monthly = parseFloat(document.getElementById("monthly").value);
+    let annualRate = parseFloat(document.getElementById("rate").value);
+    let years = parseFloat(document.getElementById("years").value);
+
+    if (!monthly || !annualRate || !years) {
+        document.getElementById("result").innerText = "Please fill all fields correctly.";
+        return;
+    }
+
+    let monthlyRate = annualRate / 12 / 100;
+    let months = years * 12;
+
+    let maturity = monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+    let invested = monthly * months;
+    let returns = maturity - invested;
+
+    document.getElementById("result").innerHTML =
+        "<strong>Total Invested:</strong> ₹ " + invested.toFixed(2) + "<br><br>" +
+        "<strong>Total Returns:</strong> ₹ " + returns.toFixed(2) + "<br><br>" +
+        "<strong>Final Maturity Value:</strong> ₹ " + maturity.toFixed(2);
+}
 }
 </script>
 
