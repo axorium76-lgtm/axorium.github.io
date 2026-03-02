@@ -102,3 +102,36 @@ footer {
 .tool-card h2 {
     margin-bottom: 10px;
 }
+.tools-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.tool-card {
+    background: #111;
+    padding: 40px;
+    max-width: 500px;
+    margin: 30px auto;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.08);
+}
+
+.tool-card input {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.tool-card input:focus {
+    outline: none;
+    border-color: gold;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+#result {
+    color: gold;
+    font-weight: 600;
+    font-size: 18px;
+    }
