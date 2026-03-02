@@ -135,3 +135,29 @@ footer {
     font-weight: 600;
     font-size: 18px;
     }
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.tools-grid .tool-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.tools-grid .tool-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+}
+
+.tools-grid .tool-card h2 {
+    margin-bottom: 15px;
+    color: gold;
+}
+
+.tools-grid .tool-card p {
+    margin-bottom: 20px;
+    color: #ccc;
+    }
