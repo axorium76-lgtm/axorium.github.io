@@ -120,6 +120,28 @@ document.getElementById("mode").addEventListener("change", function() {
         input.placeholder = "Enter Percentage / CGPA";
     }
 });
+    document.getElementById("mode").addEventListener("change", function() {
+
+    var input = document.getElementById("value1");
+    var result = document.getElementById("result");
+
+    if (this.value === "percentage") {
+        input.type = "number";
+        input.placeholder = "Enter Percentage (e.g. 85)";
+    }
+
+    else if (this.value === "cgpa") {
+        input.type = "number";
+        input.placeholder = "Enter CGPA (e.g. 8.4)";
+    }
+
+    else if (this.value === "credit") {
+        input.type = "text";
+        input.placeholder = "Enter like: 9*3,8*4,7*2";
+    }
+
+    result.innerHTML = "";
+});
 </script>
 
 </body>
