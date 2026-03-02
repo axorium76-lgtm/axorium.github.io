@@ -161,3 +161,20 @@ footer {
     margin-bottom: 20px;
     color: #ccc;
     }
+.tool-input {
+    padding: 12px;
+    width: 80%;
+    margin: 12px 0;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tool-input:focus {
+    outline: none;
+    border-color: gold;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    }
