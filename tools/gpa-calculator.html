@@ -52,9 +52,10 @@ function calculateGPA() {
 
     var mode = document.getElementById("mode").value;
     var resultArea = document.getElementById("result");
+    var input = document.getElementById("value1");
 
     if (mode === "percentage") {
-        var percentage = parseFloat(document.getElementById("value1").value);
+        var percentage = parseFloat(input.value);
         if (isNaN(percentage)) {
             resultArea.innerHTML = "Enter valid percentage.";
             return;
@@ -64,7 +65,7 @@ function calculateGPA() {
     }
 
     else if (mode === "cgpa") {
-        var cgpa = parseFloat(document.getElementById("value1").value);
+        var cgpa = parseFloat(input.value);
         if (isNaN(cgpa)) {
             resultArea.innerHTML = "Enter valid CGPA.";
             return;
@@ -74,9 +75,10 @@ function calculateGPA() {
     }
 
     else if (mode === "credit") {
-        var data = document.getElementById("value1").value;
+
+        var data = input.value;
         if (!data) {
-            resultArea.innerHTML = "Enter values in format: grade*credit (comma separated)";
+            resultArea.innerHTML = "Enter values like: 9*3,8*4,7*2";
             return;
         }
 
@@ -85,26 +87,39 @@ function calculateGPA() {
         var totalCredits = 0;
 
         for (var i = 0; i < subjects.length; i++) {
-            var parts = subjects[i].split("*");
+            var parts = subjects[i].trim().split("*");
             if (parts.length != 2) continue;
 
             var grade = parseFloat(parts[0]);
             var credit = parseFloat(parts[1]);
 
-            totalPoints += grade * credit;
-            totalCredits += credit;
+            if (!isNaN(grade) && !isNaN(credit)) {
+                totalPoints += grade * credit;
+                totalCredits += credit;
+            }
         }
 
         if (totalCredits === 0) {
-            resultArea.innerHTML = "Invalid credit format.";
+            resultArea.innerHTML = "Invalid credit format. Example: 9*3,8*4";
             return;
         }
 
         var gpa = totalPoints / totalCredits;
         resultArea.innerHTML = "<strong>Credit-Based GPA:</strong> " + gpa.toFixed(2);
     }
-
 }
+
+/* Dynamic input type switching */
+document.getElementById("mode").addEventListener("change", function() {
+    var input = document.getElementById("value1");
+    if (this.value === "credit") {
+        input.type = "text";
+        input.placeholder = "Enter like: 9*3,8*4,7*2";
+    } else {
+        input.type = "number";
+        input.placeholder = "Enter Percentage / CGPA";
+    }
+});
 </script>
 
 </body>
