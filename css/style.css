@@ -58,12 +58,12 @@ footer {
 }
 
 .logo {
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 4px;
     color: #C6A75E;
+    text-transform: uppercase;
 }
-
 .nav-links {
     list-style: none;
     display: flex;
