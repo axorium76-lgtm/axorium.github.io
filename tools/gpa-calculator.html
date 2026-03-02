@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXORIUM | Advanced GPA Calculator</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">AXORIUM</div>
+    <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../tools.html">Tools</a></li>
+        <li><a href="../about.html">About</a></li>
+    </ul>
+</nav>
+
+<section class="tools-section">
+    <h1>Advanced GPA Calculator</h1>
+    <p>Multi-mode academic performance analyzer.</p>
+
+    <div class="tool-card">
+
+        <select id="mode" style="padding:10px; width:80%; margin:10px;">
+            <option value="percentage">Percentage to GPA</option>
+            <option value="cgpa">10-Point CGPA</option>
+            <option value="credit">Credit-Based GPA</option>
+        </select>
+
+        <div id="inputsArea">
+
+            <input type="number" id="value1" placeholder="Enter Percentage / CGPA" style="padding:10px; width:80%; margin:10px;"><br>
+
+        </div>
+
+        <button onclick="calculateGPA()" class="btn">Calculate</button>
+
+        <h2 id="result" style="margin-top:20px;"></h2>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 AXORIUM. Built for the Relentless.
+</footer>
+
+<script>
+function calculateGPA() {
+
+    var mode = document.getElementById("mode").value;
+    var resultArea = document.getElementById("result");
+
+    if (mode === "percentage") {
+        var percentage = parseFloat(document.getElementById("value1").value);
+        if (isNaN(percentage)) {
+            resultArea.innerHTML = "Enter valid percentage.";
+            return;
+        }
+        var gpa = percentage / 9.5;
+        resultArea.innerHTML = "<strong>Equivalent GPA:</strong> " + gpa.toFixed(2);
+    }
+
+    else if (mode === "cgpa") {
+        var cgpa = parseFloat(document.getElementById("value1").value);
+        if (isNaN(cgpa)) {
+            resultArea.innerHTML = "Enter valid CGPA.";
+            return;
+        }
+        var percentage = cgpa * 9.5;
+        resultArea.innerHTML = "<strong>Equivalent Percentage:</strong> " + percentage.toFixed(2) + "%";
+    }
+
+    else if (mode === "credit") {
+        var data = document.getElementById("value1").value;
+        if (!data) {
+            resultArea.innerHTML = "Enter values in format: grade*credit (comma separated)";
+            return;
+        }
+
+        var subjects = data.split(",");
+        var totalPoints = 0;
+        var totalCredits = 0;
+
+        for (var i = 0; i < subjects.length; i++) {
+            var parts = subjects[i].split("*");
+            if (parts.length != 2) continue;
+
+            var grade = parseFloat(parts[0]);
+            var credit = parseFloat(parts[1]);
+
+            totalPoints += grade * credit;
+            totalCredits += credit;
+        }
+
+        if (totalCredits === 0) {
+            resultArea.innerHTML = "Invalid credit format.";
+            return;
+        }
+
+        var gpa = totalPoints / totalCredits;
+        resultArea.innerHTML = "<strong>Credit-Based GPA:</strong> " + gpa.toFixed(2);
+    }
+
+}
+</script>
+
+</body>
+  </html>
