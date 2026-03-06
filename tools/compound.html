@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,33 +11,38 @@
 <body>
 
 <nav class="navbar">
-    <div class="logo">AXORIUM</div>
-    <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../tools.html">Tools</a></li>
-        <li><a href="../about.html">About</a></li>
-    </ul>
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+<li><a href="../about.html">About</a></li>
+</ul>
 </nav>
 
 <section class="tools-section">
+
 <h1>Compound Interest Calculator</h1>
-<p>Understand how wealth compounds over time.</p>
+<p>Calculate how your money grows with compounding.</p>
 
 <div class="tool-card">
 
-<input type="number" id="principal" placeholder="Initial Investment (₹)" style="padding:10px;width:80%;margin:10px;"><br>
+<input type="number" id="principal" placeholder="Initial Investment (₹)">
 
-<input type="number" id="rate" placeholder="Annual Interest Rate (%)" style="padding:10px;width:80%;margin:10px;"><br>
+<input type="number" id="rate" placeholder="Annual Interest Rate (%)">
 
-<input type="number" id="years" placeholder="Investment Duration (Years)" style="padding:10px;width:80%;margin:10px;"><br>
+<input type="number" id="years" placeholder="Investment Duration (Years)">
 
-<input type="number" id="frequency" placeholder="Compounds Per Year (e.g. 12)" style="padding:10px;width:80%;margin:10px;"><br>
+<input type="number" id="frequency" placeholder="Compounds Per Year (e.g. 12)">
 
-<button class="btn" onclick="calculateCI()">Calculate</button>
+<br><br>
 
-<h2 id="result" style="margin-top:20px;"></h2>
+<button class="btn" onclick="calculateCompound()">Calculate</button>
+
+<h2 id="result"></h2>
 
 </div>
+
 </section>
 
 <footer>
@@ -45,31 +51,34 @@
 
 <script>
 
-function calculateCI(){
+function calculateCompound() {
 
 let principal = parseFloat(document.getElementById("principal").value);
 let rate = parseFloat(document.getElementById("rate").value);
 let years = parseFloat(document.getElementById("years").value);
-let freq = parseFloat(document.getElementById("frequency").value);
+let frequency = parseFloat(document.getElementById("frequency").value);
 
-if(isNaN(principal) || isNaN(rate) || isNaN(years) || isNaN(freq)){
-document.getElementById("result").innerHTML="Please enter valid numbers.";
+if (isNaN(principal) || isNaN(rate) || isNaN(years) || isNaN(frequency)) {
+
+document.getElementById("result").innerHTML = "Please fill all fields correctly.";
 return;
+
 }
 
-let r = rate/100;
+let r = rate / 100;
 
-let amount = principal * Math.pow((1 + r/freq),(freq*years));
+let amount = principal * Math.pow((1 + r / frequency), frequency * years);
 
 let interest = amount - principal;
 
 document.getElementById("result").innerHTML =
-"<strong>Final Amount:</strong> ₹ "+amount.toFixed(2)+"<br><br>"+
-"<strong>Total Interest Earned:</strong> ₹ "+interest.toFixed(2);
+"Final Amount: ₹ " + amount.toFixed(2) + "<br><br>" +
+"Total Interest Earned: ₹ " + interest.toFixed(2);
 
 }
 
 </script>
 
 </body>
-  </html>
+
+</html>
