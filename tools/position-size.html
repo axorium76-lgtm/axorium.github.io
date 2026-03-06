@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXORIUM | Position Size Calculator</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+<li><a href="../about.html">About</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Position Size Calculator</h1>
+<p>Professional risk management for traders.</p>
+
+<div class="tool-card">
+
+<input type="number" id="account" placeholder="Account Size (₹)">
+<br><br>
+
+<input type="number" id="risk" placeholder="Risk per Trade (%)">
+<br><br>
+
+<input type="number" id="entry" placeholder="Entry Price">
+<br><br>
+
+<input type="number" id="stop" placeholder="Stop Loss Price">
+<br><br>
+
+<button class="btn" onclick="calculate()">Calculate</button>
+
+<h2 id="result"></h2>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM. Built for the Relentless.
+</footer>
+
+<script>
+
+function calculate(){
+
+let account = parseFloat(document.getElementById("account").value);
+let risk = parseFloat(document.getElementById("risk").value);
+let entry = parseFloat(document.getElementById("entry").value);
+let stop = parseFloat(document.getElementById("stop").value);
+
+if(isNaN(account) || isNaN(risk) || isNaN(entry) || isNaN(stop)){
+document.getElementById("result").innerHTML = "Enter valid values";
+return;
+}
+
+let riskAmount = account * (risk/100);
+
+let perShareRisk = Math.abs(entry - stop);
+
+let positionSize = riskAmount / perShareRisk;
+
+document.getElementById("result").innerHTML =
+"Position Size: " + Math.floor(positionSize) + " shares";
+
+}
+
+</script>
+
+</body>
+      </html>
