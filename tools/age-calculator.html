@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Age Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+
+<section class="tools-section">
+
+<h1>Age Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate your exact age in seconds.</p>
+
+<input
+type="date"
+id="birthdate"
+class="tool-input"
+/>
+
+<button onclick="calculateAge()">
+Calculate Age
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+
+<script>
+
+function calculateAge(){
+
+let birthdate =
+document.getElementById("birthdate").value;
+
+let birth =
+new Date(birthdate);
+
+let today =
+new Date();
+
+let age =
+today.getFullYear() - birth.getFullYear();
+
+let m =
+today.getMonth() - birth.getMonth();
+
+if(m < 0 || (m === 0 && today.getDate() < birth.getDate())){
+age--;
+}
+
+document.getElementById("result").innerHTML =
+"Your Age is " + age + " years";
+
+}
+
+</script>
+
+</body>
+                    </html>
