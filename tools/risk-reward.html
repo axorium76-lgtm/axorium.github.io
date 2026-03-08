@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Risk Reward Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+
+</nav>
+
+
+<section class="tools-section">
+
+<h1>Risk Reward Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate your trading Risk to Reward ratio.</p>
+
+<input
+type="number"
+id="entry"
+placeholder="Entry Price"
+class="tool-input"
+/>
+
+<input
+type="number"
+id="stoploss"
+placeholder="Stop Loss"
+class="tool-input"
+/>
+
+<input
+type="number"
+id="target"
+placeholder="Target Price"
+class="tool-input"
+/>
+
+<button onclick="calculateRR()">
+Calculate
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+
+<footer>
+<p>© 2025 AXORIUM</p>
+</footer>
+
+
+<script>
+
+function calculateRR(){
+
+let entry =
+parseFloat(
+document.getElementById("entry").value
+);
+
+let stop =
+parseFloat(
+document.getElementById("stoploss").value
+);
+
+let target =
+parseFloat(
+document.getElementById("target").value
+);
+
+let risk =
+Math.abs(entry - stop);
+
+let reward =
+Math.abs(target - entry);
+
+let ratio =
+(reward / risk).toFixed(2);
+
+document.getElementById("result").innerHTML =
+"Risk : Reward = 1 : " + ratio;
+
+}
+
+</script>
+
+</body>
+  </html>
