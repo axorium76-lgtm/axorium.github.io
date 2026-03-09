@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan Amortization Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Loan Amortization Calculator</h1>
+
+<div class="tool-card">
+
+<p>See your full loan payment schedule with principal and interest breakdown.</p>
+
+<input type="number" id="loanAmount" placeholder="Loan Amount" class="tool-input">
+
+<input type="number" id="interestRate" placeholder="Interest Rate (%)" class="tool-input">
+
+<input type="number" id="loanTerm" placeholder="Loan Term (Years)" class="tool-input">
+
+<button onclick="calculateAmortization()">Calculate</button>
+
+<div id="summary"></div>
+
+<div style="overflow-x:auto;">
+<table id="schedule">
+
+<thead>
+<tr>
+<th>Month</th>
+<th>Payment</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Balance</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateAmortization(){
+
+let loan = parseFloat(document.getElementById("loanAmount").value);
+let rate = parseFloat(document.getElementById("interestRate").value)/100/12;
+let years = parseFloat(document.getElementById("loanTerm").value);
+
+let months = years * 12;
+
+let payment = (loan * rate * Math.pow(1+rate, months)) /
+(Math.pow(1+rate, months) - 1);
+
+let balance = loan;
+
+let table = document.querySelector("#schedule tbody");
+table.innerHTML = "";
+
+let totalInterest = 0;
+
+for(let i=1;i<=months;i++){
+
+let interest = balance * rate;
+let principal = payment - interest;
+
+balance -= principal;
+
+totalInterest += interest;
+
+let row = `
+<tr>
+<td>${i}</td>
+<td>$${payment.toFixed(2)}</td>
+<td>$${principal.toFixed(2)}</td>
+<td>$${interest.toFixed(2)}</td>
+<td>$${balance.toFixed(2)}</td>
+</tr>
+`;
+
+table.innerHTML += row;
+
+}
+
+document.getElementById("summary").innerHTML =
+"<h3>Monthly Payment: $" + payment.toFixed(2) + "</h3>" +
+"<p>Total Interest Paid: $" + totalInterest.toFixed(2) + "</p>" +
+"<p>Total Payment: $" + (loan + totalInterest).toFixed(2) + "</p>";
+
+}
+
+</script>
+
+</body>
+
+                                                     </html>
