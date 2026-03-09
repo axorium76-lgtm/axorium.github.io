@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Percentage Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate percentages easily.</p>
+
+<h3>What is X% of Y?</h3>
+
+<input type="number" id="percent" placeholder="Enter percentage" class="tool-input">
+
+<input type="number" id="number" placeholder="Enter number" class="tool-input">
+
+<button onclick="calculatePercent()">
+Calculate
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculatePercent(){
+
+let percent = document.getElementById("percent").value;
+let number = document.getElementById("number").value;
+
+if(percent === "" || number === ""){
+document.getElementById("result").innerHTML = "Please enter both values.";
+return;
+}
+
+let result = (percent / 100) * number;
+
+document.getElementById("result").innerHTML =
+percent + "% of " + number + " = " + result;
+
+}
+
+</script>
+
+</body>
+  </html>
