@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profit & Loss Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Profit & Loss Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate profit or loss based on cost and selling price.</p>
+
+<input type="number" id="costPrice" placeholder="Cost Price" class="tool-input">
+
+<input type="number" id="sellPrice" placeholder="Selling Price" class="tool-input">
+
+<button onclick="calculateProfitLoss()">
+Calculate
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateProfitLoss(){
+
+let cost = parseFloat(document.getElementById("costPrice").value);
+let sell = parseFloat(document.getElementById("sellPrice").value);
+
+if(isNaN(cost) || isNaN(sell)){
+document.getElementById("result").innerHTML = "Please enter both values.";
+return;
+}
+
+let diff = sell - cost;
+
+if(diff > 0){
+
+let percent = (diff / cost) * 100;
+
+document.getElementById("result").innerHTML =
+"Profit: " + diff.toFixed(2) + " (" + percent.toFixed(2) + "%)";
+
+}
+
+else if(diff < 0){
+
+let percent = (Math.abs(diff) / cost) * 100;
+
+document.getElementById("result").innerHTML =
+"Loss: " + Math.abs(diff).toFixed(2) + " (" + percent.toFixed(2) + "%)";
+
+}
+
+else{
+
+document.getElementById("result").innerHTML = "No Profit No Loss";
+
+}
+
+}
+
+</script>
+
+</body>
+  </html>
