@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,23 +8,20 @@
 
 <title>Risk Reward Calculator | AXORIUM</title>
 
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
 
 <nav class="navbar">
-
 <div class="logo">AXORIUM</div>
 
 <ul class="nav-links">
 <li><a href="../index.html">Home</a></li>
 <li><a href="../tools.html">Tools</a></li>
 </ul>
-
 </nav>
-
 
 <section class="tools-section">
 
@@ -31,30 +29,17 @@
 
 <div class="tool-card">
 
-<p>Calculate your trading Risk to Reward ratio.</p>
+<p>Calculate trading risk, reward and risk-reward ratio.</p>
 
-<input
-type="number"
-id="entry"
-placeholder="Entry Price"
-class="tool-input"
-/>
+<input type="number" id="entry" placeholder="Entry Price" class="tool-input">
 
-<input
-type="number"
-id="stoploss"
-placeholder="Stop Loss"
-class="tool-input"
-/>
+<input type="number" id="stoploss" placeholder="Stop Loss Price" class="tool-input">
 
-<input
-type="number"
-id="target"
-placeholder="Target Price"
-class="tool-input"
-/>
+<input type="number" id="target" placeholder="Target Price" class="tool-input">
 
-<button onclick="calculateRR()">
+<input type="number" id="quantity" placeholder="Quantity" class="tool-input">
+
+<button onclick="calculateRiskReward()">
 Calculate
 </button>
 
@@ -64,46 +49,42 @@ Calculate
 
 </section>
 
-
 <footer>
-<p>© 2026 AXORIUM</p>
+© 2026 AXORIUM
 </footer>
-
 
 <script>
 
-function calculateRR(){
+function calculateRiskReward(){
 
-let entry =
-parseFloat(
-document.getElementById("entry").value
-);
+let entry = parseFloat(document.getElementById("entry").value);
+let stop = parseFloat(document.getElementById("stoploss").value);
+let target = parseFloat(document.getElementById("target").value);
+let qty = parseFloat(document.getElementById("quantity").value);
 
-let stop =
-parseFloat(
-document.getElementById("stoploss").value
-);
+if(isNaN(entry) || isNaN(stop) || isNaN(target) || isNaN(qty)){
+document.getElementById("result").innerHTML = "Please enter all values.";
+return;
+}
 
-let target =
-parseFloat(
-document.getElementById("target").value
-);
+let riskPerShare = entry - stop;
+let rewardPerShare = target - entry;
 
-let risk =
-Math.abs(entry - stop);
+let totalRisk = riskPerShare * qty;
+let totalReward = rewardPerShare * qty;
 
-let reward =
-Math.abs(target - entry);
-
-let ratio =
-(reward / risk).toFixed(2);
+let ratio = rewardPerShare / riskPerShare;
 
 document.getElementById("result").innerHTML =
-"Risk : Reward = 1 : " + ratio;
+"Risk per Share: " + riskPerShare.toFixed(2) + "<br>" +
+"Reward per Share: " + rewardPerShare.toFixed(2) + "<br>" +
+"Total Risk: " + totalRisk.toFixed(2) + "<br>" +
+"Total Reward: " + totalReward.toFixed(2) + "<br>" +
+"Risk-Reward Ratio: 1 : " + ratio.toFixed(2);
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
