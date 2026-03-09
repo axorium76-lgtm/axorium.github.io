@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mortgage Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Mortgage Calculator</h1>
+
+<div class="tool-card">
+
+<p>Estimate your monthly mortgage payment including taxes and insurance.</p>
+
+<input type="number" id="homePrice" placeholder="Home Price" class="tool-input">
+
+<input type="number" id="downPayment" placeholder="Down Payment" class="tool-input">
+
+<input type="number" id="interestRate" placeholder="Interest Rate (%)" class="tool-input">
+
+<input type="number" id="loanTerm" placeholder="Loan Term (Years)" class="tool-input">
+
+<input type="number" id="propertyTax" placeholder="Annual Property Tax" class="tool-input">
+
+<input type="number" id="insurance" placeholder="Annual Home Insurance" class="tool-input">
+
+<input type="number" id="hoa" placeholder="Monthly HOA Fees (Optional)" class="tool-input">
+
+<button onclick="calculateMortgage()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateMortgage(){
+
+let price = parseFloat(document.getElementById("homePrice").value);
+let down = parseFloat(document.getElementById("downPayment").value);
+let rate = parseFloat(document.getElementById("interestRate").value)/100/12;
+let years = parseFloat(document.getElementById("loanTerm").value);
+let tax = parseFloat(document.getElementById("propertyTax").value)/12;
+let insurance = parseFloat(document.getElementById("insurance").value)/12;
+let hoa = parseFloat(document.getElementById("hoa").value) || 0;
+
+let loan = price - down;
+let months = years * 12;
+
+let mortgage = (loan * rate * Math.pow(1+rate, months)) /
+(Math.pow(1+rate, months) - 1);
+
+let monthlyPayment = mortgage + tax + insurance + hoa;
+
+let totalPayment = monthlyPayment * months;
+let totalInterest = totalPayment - loan;
+
+document.getElementById("result").innerHTML =
+"<h3>Monthly Payment: $" + monthlyPayment.toFixed(2) + "</h3>" +
+"<p>Total Loan Amount: $" + loan.toFixed(2) + "</p>" +
+"<p>Total Interest: $" + totalInterest.toFixed(2) + "</p>" +
+"<p>Total Payment: $" + totalPayment.toFixed(2) + "</p>";
+
+}
+
+</script>
+
+</body>
+  </html>
