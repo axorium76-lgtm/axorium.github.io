@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Retirement Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Retirement Calculator</h1>
+
+<div class="tool-card">
+
+<p>Estimate how much wealth you can build before retirement.</p>
+
+<input type="number" id="currentAge" placeholder="Current Age" class="tool-input">
+
+<input type="number" id="retirementAge" placeholder="Retirement Age" class="tool-input">
+
+<input type="number" id="monthlyInvestment" placeholder="Monthly Investment" class="tool-input">
+
+<input type="number" id="returnRate" placeholder="Expected Annual Return (%)" class="tool-input">
+
+<button onclick="calculateRetirement()">
+Calculate
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateRetirement(){
+
+let currentAge = parseFloat(document.getElementById("currentAge").value);
+let retirementAge = parseFloat(document.getElementById("retirementAge").value);
+let monthly = parseFloat(document.getElementById("monthlyInvestment").value);
+let rate = parseFloat(document.getElementById("returnRate").value);
+
+if(isNaN(currentAge) || isNaN(retirementAge) || isNaN(monthly) || isNaN(rate)){
+document.getElementById("result").innerHTML = "Please enter all values.";
+return;
+}
+
+let years = retirementAge - currentAge;
+let months = years * 12;
+
+let monthlyRate = rate / 12 / 100;
+
+let futureValue = monthly * ((Math.pow(1+monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+
+let invested = monthly * months;
+
+let profit = futureValue - invested;
+
+document.getElementById("result").innerHTML =
+"Total Invested: " + invested.toFixed(2) + "<br>" +
+"Retirement Value: " + futureValue.toFixed(2) + "<br>" +
+"Total Profit: " + profit.toFixed(2);
+
+}
+
+</script>
+
+</body>
+  </html>
