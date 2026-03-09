@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Investment Return Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Investment Return Calculator</h1>
+
+<div class="tool-card">
+
+<p>Estimate the future value and profit of your investment.</p>
+
+<input type="number" id="investment" placeholder="Initial Investment Amount" class="tool-input">
+
+<input type="number" id="rate" placeholder="Annual Return Rate (%)" class="tool-input">
+
+<input type="number" id="years" placeholder="Investment Period (Years)" class="tool-input">
+
+<button onclick="calculateInvestment()">
+Calculate Return
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateInvestment(){
+
+let principal = parseFloat(document.getElementById("investment").value);
+let rate = parseFloat(document.getElementById("rate").value);
+let years = parseFloat(document.getElementById("years").value);
+
+if(isNaN(principal) || isNaN(rate) || isNaN(years)){
+document.getElementById("result").innerHTML = "Please enter all values.";
+return;
+}
+
+let futureValue = principal * Math.pow((1 + rate/100), years);
+
+let profit = futureValue - principal;
+
+document.getElementById("result").innerHTML =
+"Future Value: " + futureValue.toFixed(2) + "<br>" +
+"Total Profit: " + profit.toFixed(2) + "<br>" +
+"Total Invested: " + principal.toFixed(2);
+
+}
+
+</script>
+
+</body>
+                                                             </html>
