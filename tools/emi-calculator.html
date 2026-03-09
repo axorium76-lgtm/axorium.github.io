@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan EMI Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Loan EMI Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate your monthly EMI, total interest and total payment.</p>
+
+<input type="number" id="loan" placeholder="Loan Amount" class="tool-input">
+
+<input type="number" id="rate" placeholder="Annual Interest Rate (%)" class="tool-input">
+
+<input type="number" id="years" placeholder="Loan Tenure (Years)" class="tool-input">
+
+<button onclick="calculateEMI()">
+Calculate EMI
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateEMI(){
+
+let P = parseFloat(document.getElementById("loan").value);
+let annualRate = parseFloat(document.getElementById("rate").value);
+let years = parseFloat(document.getElementById("years").value);
+
+if(isNaN(P) || isNaN(annualRate) || isNaN(years)){
+document.getElementById("result").innerHTML = "Please enter all values.";
+return;
+}
+
+let r = annualRate / 12 / 100;
+let n = years * 12;
+
+let EMI = (P * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+
+let totalPayment = EMI * n;
+let totalInterest = totalPayment - P;
+
+document.getElementById("result").innerHTML =
+"Monthly EMI: " + EMI.toFixed(2) + "<br>" +
+"Total Interest: " + totalInterest.toFixed(2) + "<br>" +
+"Total Payment: " + totalPayment.toFixed(2);
+
+}
+
+</script>
+
+</body>
+  </html>
