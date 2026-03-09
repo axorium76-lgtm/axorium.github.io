@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Time Planner | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Study Time Planner</h1>
+
+<div class="tool-card">
+
+<p>Plan how many hours you should study each day before your exam.</p>
+
+<input type="number" id="subjects" placeholder="Number of Subjects" class="tool-input">
+
+<input type="number" id="totalHours" placeholder="Total Study Hours Needed" class="tool-input">
+
+<input type="number" id="daysLeft" placeholder="Days Until Exam" class="tool-input">
+
+<button onclick="calculateStudy()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateStudy(){
+
+let subjects = parseFloat(document.getElementById("subjects").value);
+let hours = parseFloat(document.getElementById("totalHours").value);
+let days = parseFloat(document.getElementById("daysLeft").value);
+
+let hoursPerDay = hours / days;
+let hoursPerSubject = hours / subjects;
+
+document.getElementById("result").innerHTML =
+"<h3>Study Hours Per Day: " + hoursPerDay.toFixed(2) + "</h3>" +
+"<p>Average Hours Per Subject: " + hoursPerSubject.toFixed(2) + "</p>";
+
+}
+
+</script>
+
+</body>
+  </html>
