@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inflation Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Inflation Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate how inflation affects the value of money over time.</p>
+
+<input type="number" id="amount" placeholder="Starting Amount" class="tool-input">
+
+<input type="number" id="rate" placeholder="Annual Inflation Rate (%)" class="tool-input">
+
+<input type="number" id="years" placeholder="Number of Years" class="tool-input">
+
+<button onclick="calculateInflation()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateInflation(){
+
+let amount = parseFloat(document.getElementById("amount").value);
+let rate = parseFloat(document.getElementById("rate").value)/100;
+let years = parseFloat(document.getElementById("years").value);
+
+let futureValue = amount * Math.pow(1 + rate, years);
+
+let inflationLoss = futureValue - amount;
+
+document.getElementById("result").innerHTML =
+"<h3>Future Value: $" + futureValue.toFixed(2) + "</h3>" +
+"<p>Increase due to inflation: $" + inflationLoss.toFixed(2) + "</p>";
+
+}
+
+</script>
+
+</body>
+  </html>
