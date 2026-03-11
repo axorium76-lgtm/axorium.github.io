@@ -1,71 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Savings Goal Calculator | AXORIUM</title>
-
-<link rel="stylesheet" href="../css/style.css">
-
-</head>
-
-<body>
-
-<nav class="navbar">
-<div class="logo">AXORIUM</div>
-
-<ul class="nav-links">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Savings Goal Calculator | AXORIUM</title><link rel="stylesheet" href="../css/style.css"></head><body><nav class="navbar">
+<div class="logo">AXORIUM</div><ul class="nav-links">
 <li><a href="../index.html">Home</a></li>
 <li><a href="../tools.html">Tools</a></li>
 </ul>
-</nav>
+</nav><section class="tools-section"><h1>Savings Goal Calculator</h1><div class="tool-card"><p>Calculate how much you must save every month to reach your financial goal.</p><input type="number" id="goal" placeholder="Target Amount" class="tool-input"><input type="number" id="years" placeholder="Years to Reach Goal" class="tool-input"><input type="number" id="rate" placeholder="Annual Interest Rate (%)" class="tool-input"><button onclick="calculateSavings()">Calculate</button>
 
-<section class="tools-section">
-
-<h1>Savings Goal Calculator</h1>
-
-<div class="tool-card">
-
-<p>Find out how much you need to save every month to reach your financial goal.</p>
-
-<input type="number" id="goal" placeholder="Target Amount" class="tool-input">
-
-<input type="number" id="years" placeholder="Years to Reach Goal" class="tool-input">
-
-<input type="number" id="rate" placeholder="Annual Interest Rate (%)" class="tool-input">
-
-<button onclick="calculateSavings()">Calculate</button>
-
-<div id="result"></div>
-
-</div>
-
-</section>
-
-<footer>
+<div id="result"></div></div></section><footer>
 © 2026 AXORIUM
-</footer>
-
-<script>
+</footer><script>
 
 function calculateSavings(){
 
 let goal = parseFloat(document.getElementById("goal").value);
 let years = parseFloat(document.getElementById("years").value);
-let rate = parseFloat(document.getElementById("rate").value)/100/12;
+let rate = parseFloat(document.getElementById("rate").value);
 
-let months = years * 12;
-
-let monthlySave = goal * rate / (Math.pow(1+rate, months) - 1);
+if(isNaN(goal) || isNaN(years) || isNaN(rate) || years <= 0){
 
 document.getElementById("result").innerHTML =
-"<h3>Monthly Savings Required: $" + monthlySave.toFixed(2) + "</h3>";
+"<p>Please enter valid values.</p>";
+return;
 
 }
 
-</script>
+let months = years * 12;
 
-</body>
-                                                </html>
+let monthlySave;
+
+if(rate === 0){
+
+monthlySave = goal / months;
+
+}else{
+
+let monthlyRate = rate / 100 / 12;
+
+monthlySave = goal * monthlyRate /
+(Math.pow(1 + monthlyRate, months) - 1);
+
+}
+
+document.getElementById("result").innerHTML =
+"<h3>Monthly Savings Required: $" + monthlySave.toFixed(2) + "</h3>" +
+"<p>Total Months: " + months + "</p>";
+
+}
+
+</script></body>
+</html>
