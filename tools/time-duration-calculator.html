@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Time Duration Calculator | AXORIUM</title><link rel="stylesheet" href="../css/style.css"></head><body><nav class="navbar">
+<div class="logo">AXORIUM</div><ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav><section class="tools-section"><h1>Time Duration Calculator</h1><div class="tool-card"><p>Calculate the time difference between two times.</p><label>Start Time</label>
+<input type="time" id="startTime" class="tool-input">
+
+<label>End Time</label>
+<input type="time" id="endTime" class="tool-input">
+
+<button onclick="calculateDuration()">Calculate</button>
+
+<div id="result"></div></div></section><footer>
+© 2026 AXORIUM
+</footer><script>
+
+function calculateDuration(){
+
+let start = document.getElementById("startTime").value;
+let end = document.getElementById("endTime").value;
+
+if(!start || !end){
+
+document.getElementById("result").innerHTML =
+"<p>Please select both times.</p>";
+return;
+
+}
+
+let startParts = start.split(":");
+let endParts = end.split(":");
+
+let startMinutes = parseInt(startParts[0]) * 60 + parseInt(startParts[1]);
+let endMinutes = parseInt(endParts[0]) * 60 + parseInt(endParts[1]);
+
+let diff = endMinutes - startMinutes;
+
+if(diff < 0){
+diff += 1440;
+}
+
+let hours = Math.floor(diff / 60);
+let minutes = diff % 60;
+
+document.getElementById("result").innerHTML =
+"<h3>Duration: " + hours + " hours " + minutes + " minutes</h3>";
+
+}
+
+</script></body>
+</html>
