@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Savings Goal Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Savings Goal Calculator</h1>
+
+<div class="tool-card">
+
+<p>Find out how much you need to save every month to reach your financial goal.</p>
+
+<input type="number" id="goal" placeholder="Target Amount" class="tool-input">
+
+<input type="number" id="years" placeholder="Years to Reach Goal" class="tool-input">
+
+<input type="number" id="rate" placeholder="Annual Interest Rate (%)" class="tool-input">
+
+<button onclick="calculateSavings()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateSavings(){
+
+let goal = parseFloat(document.getElementById("goal").value);
+let years = parseFloat(document.getElementById("years").value);
+let rate = parseFloat(document.getElementById("rate").value)/100/12;
+
+let months = years * 12;
+
+let monthlySave = goal * rate / (Math.pow(1+rate, months) - 1);
+
+document.getElementById("result").innerHTML =
+"<h3>Monthly Savings Required: $" + monthlySave.toFixed(2) + "</h3>";
+
+}
+
+</script>
+
+</body>
+                                                </html>
