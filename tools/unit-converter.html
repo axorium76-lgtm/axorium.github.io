@@ -1,96 +1,199 @@
-<!DOCTYPE html><html lang="en">
-<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Universal Unit Converter | AXORIUM</title><link rel="stylesheet" href="../css/style.css"></head><body><nav class="navbar">
-<div class="logo">AXORIUM</div><ul class="nav-links">
-<li><a href="../index.html">Home</a></li>
-<li><a href="../tools.html">Tools</a></li>
-</ul>
-</nav><section class="tools-section"><h1>Universal Unit Converter</h1><div class="tool-card"><p>Convert between different units quickly and easily.</p><label>Category</label>
-<select id="category" class="tool-input" onchange="updateUnits()">
+<!DOCTYPE html>
+<html>
+<head>
+<title>AXORIUM Unit Converter</title>
 
+<style>
+
+body{
+font-family: Arial;
+background:#0b0b1f;
+color:white;
+text-align:center;
+margin:0;
+}
+
+header{
+padding:15px;
+font-size:22px;
+font-weight:bold;
+}
+
+nav{
+margin-bottom:20px;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+}
+
+.container{
+width:90%;
+max-width:420px;
+margin:auto;
+background:#111;
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(255,215,0,0.3);
+}
+
+h1{
+color:#ffd700;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+font-size:16px;
+}
+
+button{
+padding:12px 20px;
+margin:10px;
+border:none;
+border-radius:8px;
+background:#ffd700;
+font-weight:bold;
+cursor:pointer;
+}
+
+#result{
+margin-top:20px;
+font-size:22px;
+color:#ffd700;
+}
+
+footer{
+margin-top:30px;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>AXORIUM</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Tools</a>
+</nav>
+
+<div class="container">
+
+<h1>Universal Unit Converter</h1>
+<p>Convert between different units quickly and easily.</p>
+
+<label>Category</label>
+<select id="category" onchange="loadUnits()">
 <option value="length">Length</option>
 <option value="weight">Weight / Mass</option>
 <option value="temperature">Temperature</option>
 <option value="time">Time</option>
 <option value="storage">Digital Storage</option>
-</select><label>Value</label>
-<input type="number" id="value" placeholder="Enter value" class="tool-input">
+</select>
+
+<label>Value</label>
+<input type="number" id="value" placeholder="Enter value">
 
 <label>From Unit</label>
-<select id="fromUnit" class="tool-input"></select>
+<select id="fromUnit"></select>
 
 <label>To Unit</label>
-<select id="toUnit" class="tool-input"></select>
+<select id="toUnit"></select>
 
 <button onclick="convert()">Convert</button>
-<button onclick="swapUnits()">Swap Units</button>
+<button onclick="swap()">Swap Units</button>
 
-<div id="result"></div></div></section><footer>
+<div id="result"></div>
+
+</div>
+
+<footer>
 © 2026 AXORIUM
-</footer><script>
+</footer>
+
+<script>
 
 const units = {
 
 length:{
 meter:1,
-kilometer:1000,
-centimeter:0.01,
-millimeter:0.001,
-mile:1609.34,
-yard:0.9144,
-foot:0.3048,
-inch:0.0254
+kilometer:0.001,
+centimeter:100,
+millimeter:1000
 },
 
 weight:{
 kilogram:1,
-gram:0.001,
-milligram:0.000001,
-pound:0.453592,
-ounce:0.0283495
+gram:1000,
+pound:2.20462
 },
 
 time:{
 second:1,
-minute:60,
-hour:3600,
-day:86400,
-week:604800
+minute:1/60,
+hour:1/3600
 },
 
 storage:{
 byte:1,
-kilobyte:1024,
-megabyte:1048576,
-gigabyte:1073741824,
-terabyte:1099511627776
+kilobyte:0.001,
+megabyte:0.000001,
+gigabyte:0.000000001
 }
 
 };
 
-function updateUnits(){
+function loadUnits(){
 
-let category = document.getElementById("category").value;
+const category=document.getElementById("category").value;
 
-let from = document.getElementById("fromUnit");
-let to = document.getElementById("toUnit");
+const from=document.getElementById("fromUnit");
+const to=document.getElementById("toUnit");
 
 from.innerHTML="";
 to.innerHTML="";
 
-let categoryUnits = units[category];
+if(category==="temperature"){
 
-for(let unit in categoryUnits){
+["celsius","fahrenheit","kelvin"].forEach(unit=>{
 
-let option1 = document.createElement("option");
-option1.value = unit;
-option1.text = unit;
+let option1=document.createElement("option");
+option1.value=unit;
+option1.text=unit;
 from.appendChild(option1);
 
-let option2 = document.createElement("option");
-option2.value = unit;
-option2.text = unit;
+let option2=document.createElement("option");
+option2.value=unit;
+option2.text=unit;
 to.appendChild(option2);
+
+});
+
+}
+
+else{
+
+for(let unit in units[category]){
+
+let option1=document.createElement("option");
+option1.value=unit;
+option1.text=unit;
+from.appendChild(option1);
+
+let option2=document.createElement("option");
+option2.value=unit;
+option2.text=unit;
+to.appendChild(option2);
+
+}
 
 }
 
@@ -98,49 +201,63 @@ to.appendChild(option2);
 
 function convert(){
 
-let category = document.getElementById("category").value;
-let value = parseFloat(document.getElementById("value").value);
-let from = document.getElementById("fromUnit").value;
-let to = document.getElementById("toUnit").value;
-
-if(isNaN(value)){
-document.getElementById("result").innerHTML = "Please enter a value.";
-return;
-}
-
-if(category === "temperature"){
+const value=parseFloat(document.getElementById("value").value);
+const category=document.getElementById("category").value;
+const from=document.getElementById("fromUnit").value;
+const to=document.getElementById("toUnit").value;
 
 let result;
 
-if(from === "celsius" && to === "fahrenheit"){
-result = value * 9/5 + 32;
-}
+if(category==="temperature"){
 
-document.getElementById("result").innerHTML = result;
-return;
+if(from==="celsius" && to==="fahrenheit")
+result=(value*9/5)+32;
 
-}
+else if(from==="fahrenheit" && to==="celsius")
+result=(value-32)*5/9;
 
-let baseValue = value * units[category][from];
-let result = baseValue / units[category][to];
+else if(from==="celsius" && to==="kelvin")
+result=value+273.15;
 
-document.getElementById("result").innerHTML =
-"<h3>"+value+" "+from+" = "+result.toFixed(4)+" "+to+"</h3>";
+else if(from==="kelvin" && to==="celsius")
+result=value-273.15;
 
-}
+else if(from==="fahrenheit" && to==="kelvin")
+result=(value-32)*5/9+273.15;
 
-function swapUnits(){
+else if(from==="kelvin" && to==="fahrenheit")
+result=(value-273.15)*9/5+32;
 
-let from = document.getElementById("fromUnit");
-let to = document.getElementById("toUnit");
-
-let temp = from.value;
-from.value = to.value;
-to.value = temp;
+else
+result=value;
 
 }
 
-updateUnits();
+else{
 
-</script></body>
-  </html>
+result=value*(units[category][to]/units[category][from]);
+
+}
+
+document.getElementById("result").innerText=
+value+" "+from+" = "+result.toFixed(4)+" "+to;
+
+}
+
+function swap(){
+
+let from=document.getElementById("fromUnit");
+let to=document.getElementById("toUnit");
+
+let temp=from.value;
+from.value=to.value;
+to.value=temp;
+
+}
+
+loadUnits();
+
+</script>
+
+</body>
+</html>
