@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GST Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+
+<section class="tools-section">
+
+<h1>GST Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate GST amount and final price instantly.</p>
+
+<input
+type="number"
+id="amount"
+class="tool-input"
+placeholder="Enter Amount"
+/>
+
+<input
+type="number"
+id="gst"
+class="tool-input"
+placeholder="Enter GST %"
+/>
+
+<button onclick="calculateGST()">
+Calculate GST
+</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+
+<script>
+
+function calculateGST(){
+
+let amount =
+parseFloat(document.getElementById("amount").value);
+
+let gst =
+parseFloat(document.getElementById("gst").value);
+
+let gstAmount =
+(amount * gst) / 100;
+
+let finalPrice =
+amount + gstAmount;
+
+document.getElementById("result").innerHTML =
+"GST Amount: ₹" + gstAmount.toFixed(2) +
+"<br>Final Price: ₹" + finalPrice.toFixed(2);
+
+}
+
+</script>
+
+</body>
+</html>
+
+
+<!-- TOOL EXPLANATION SECTION -->
+
+<div class="tool-explanation">
+
+<h2>What is a GST Calculator?</h2>
+<p>
+A GST Calculator is a financial tool used to calculate the Goods and Services Tax applied to a product 
+or service. Instead of manually calculating the tax percentage and adding it to the base price, the tool 
+instantly computes the GST amount and the final price.
+</p>
+
+<p>
+GST calculators are commonly used by business owners, shopkeepers, accountants, and customers who want 
+to understand how much tax is included in a purchase. Since GST rates in India can vary depending on the 
+product category, using a calculator helps ensure accuracy.
+</p>
+
+<h2>How the Calculation Works</h2>
+<p>
+The calculator works by multiplying the original amount by the GST percentage and dividing the result 
+by 100. This provides the GST amount. The tool then adds the GST amount to the original price to display 
+the final price including tax.
+</p>
+
+<p>
+For example, if the original product price is ₹1000 and the GST rate is 18%, the calculator will compute 
+₹180 as GST and show the final price as ₹1180.
+</p>
+
+<h2>Example</h2>
+<p>
+Suppose a product costs ₹500 and the GST rate applied is 12%. After entering these values and clicking 
+the calculate button, the tool will instantly display ₹60 as GST and ₹560 as the final price.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>
+A GST Calculator saves time and prevents calculation errors when dealing with tax percentages. It is 
+particularly helpful for small businesses, freelancers, and customers who want to quickly understand 
+the tax included in their transactions.
+</p>
+
+<p>
+By using this tool, users can instantly calculate GST and understand the exact cost of a product or 
+service without needing manual calculations.
+</p>
+
+  </div>
