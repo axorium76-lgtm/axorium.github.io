@@ -1,96 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GST Calculator | AXORIUM</title>
-
-<link rel="stylesheet" href="../css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GST Calculator | AXORIUM</title>
+  <meta name="description" content="Calculate GST amounts, net price, and total with tax instantly">
+  
+  <link rel="canonical" href="https://axorium76-lgtm.github.io/axorium.github.io/gst-calculator.html">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <style>
+    /* SAME PROFESSIONAL STYLES */
+    .calc-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    .tool-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .tool-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #10b981, #059669);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .tool-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    
+    .input-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    @media (max-width: 600px) {
+      .input-group {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    
+    .input-field {
+      position: relative;
+    }
+    
+    .input-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    
+    .calc-input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+    
+    .calc-input:focus {
+      outline: none;
+      border-color: #10b981;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+      transform: translateY(-1px);
+    }
+    
+    .gst-select {
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      background: #fafafa;
+      cursor: pointer;
+    }
+    
+    .gst-select:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+    }
+    
+    .calc-btn {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border: none;
+      padding: 1.2rem 3rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+    
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(16,185,129,0.3);
+    }
+    
+    .results-section {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-radius: 16px;
+      padding: 2rem;
+      border-left: 5px solid #10b981;
+      margin-top: 2rem;
+      display: none;
+    }
+    
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #d1fae5;
+    }
+    
+    .result-row:last-child {
+      border-bottom: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #065f46;
+      padding-top: 1.5rem;
+    }
+    
+    .result-label {
+      font-weight: 500;
+      color: #047857;
+    }
+    
+    .result-value {
+      font-weight: 600;
+      color: #065f46;
+      font-size: 1.2rem;
+    }
+    
+    .error-message {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+    
+    .history-section {
+      margin-top: 2rem;
+    }
+    
+    .history-item {
+      background: #f0fdf4;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-left: 3px solid #dcfce7;
+    }
+    
+    .history-item:hover {
+      background: #dcfce7;
+      border-left-color: #10b981;
+    }
+  </style>
 </head>
 
 <body>
+  <nav class="navbar">
+    <div class="logo">AXORIUM</div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../tools.html">Tools</a></li>
+    </ul>
+  </nav>
 
-<nav class="navbar">
-<div class="logo">AXORIUM</div>
+  <div class="calc-container">
+    <div class="tool-header">
+      <h1>🧾 GST Calculator</h1>
+      <p>Calculate GST amount, net price, and total instantly</p>
+    </div>
 
-<ul class="nav-links">
-<li><a href="../index.html">Home</a></li>
-<li><a href="../tools.html">Tools</a></li>
-</ul>
-</nav>
+    <div class="tool-card">
+      <div class="input-group">
+        <div class="input-field">
+          <label class="input-label">Amount (₹)</label>
+          <input type="number" id="amount" class="calc-input" placeholder="1000" min="0" step="0.01">
+        </div>
+        <div class="input-field">
+          <label class="input-label">GST Rate</label>
+          <select id="gstRate" class="gst-select">
+            <option value="5">5% (Restaurants)</option>
+            <option value="12" selected>12% (Standard)</option>
+            <option value="18">18% (Most Goods)</option>
+            <option value="28">28% (Luxury)</option>
+          </select>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin: 1.5rem 0; color: #64748b;">
+        OR
+      </div>
+      
+      <div class="input-group">
+        <div class="input-field">
+          <label class="input-label">Amount with GST (₹)</label>
+          <input type="number" id="totalAmount" class="calc-input" placeholder="1180" min="0" step="0.01">
+        </div>
+        <div class="input-field">
+          <label class="input-label">GST Rate</label>
+          <select id="gstRate2" class="gst-select">
+            <option value="5">5%</option>
+            <option value="12" selected>12%</option>
+            <option value="18">18%</option>
+            <option value="28">28%</option>
+          </select>
+        </div>
+      </div>
+      
+      <button class="calc-btn" onclick="gstCalc.calculate()">
+        🧮 Calculate GST
+      </button>
+      
+      <div id="results" class="results-section"></div>
+    </div>
 
+    <div class="tool-card history-section">
+      <h3 style="margin-bottom: 1rem; color: #065f46;">📋 Recent GST Calculations</h3>
+      <div id="history-list"></div>
+    </div>
+  </div>
 
-<section class="tools-section">
+  <footer>© 2026 AXORIUM</footer>
 
-<h1>GST Calculator</h1>
-
-<div class="tool-card">
-
-<p>Calculate GST amount and final price instantly.</p>
-
-<input
-type="number"
-id="amount"
-class="tool-input"
-placeholder="Enter Amount"
-/>
-
-<input
-type="number"
-id="gst"
-class="tool-input"
-placeholder="Enter GST %"
-/>
-
-<button onclick="calculateGST()">
-Calculate GST
-</button>
-
-<div id="result"></div>
-
-</div>
-
-</section>
-
-
-<footer>
-© 2026 AXORIUM
-</footer>
-
-
-<script>
-
-function calculateGST(){
-
-let amount =
-parseFloat(document.getElementById("amount").value);
-
-let gst =
-parseFloat(document.getElementById("gst").value);
-
-let gstAmount =
-(amount * gst) / 100;
-
-let finalPrice =
-amount + gstAmount;
-
-document.getElementById("result").innerHTML =
-"GST Amount: ₹" + gstAmount.toFixed(2) +
-"<br>Final Price: ₹" + finalPrice.toFixed(2);
-
-}
-
-</script>
-
+  <script>
+    class GSTCalculator {
+      constructor() {
+        this.amountInput = document.getElementById('amount');
+        this.totalAmountInput = document.getElementById('totalAmount');
+        this.gstRateSelect = document.getElementById('gstRate');
+        this.gstRateSelect2 = document.getElementById('gstRate2');
+        this.resultsDiv = document.getElementById('results');
+        this.historyDiv = document.getElementById('history-list');
+        this.history = JSON.parse(localStorage.getItem('axorium_gst_history')) || [];
+        this.init();
+      }
+      
+      init() {
+        this.amountInput.addEventListener('input', this.debounce(this.calculate.bind(this), 150));
+        this.totalAmountInput.addEventListener('input', this.debounce(this.calculate.bind(this), 150));
+        this.gstRateSelect.addEventListener('change', this.calculate.bind(this));
+        this.gstRateSelect2.addEventListener('change', this.calculate.bind(this));
+        this.renderHistory();
+      }
+      
+      debounce(func, delay) {
+        let timeout;
+        return (...args) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+      }
+      
+      calculate() {
+        const amount = parseFloat(this.amountInput.value) || 0;
+        const totalAmount = parseFloat(this.totalAmountInput.value) || 0;
+        const gstRate = parseFloat(this.gstRateSelect.value) / 100;
+        const gstRate2 = parseFloat(this.gstRateSelect2.value) / 100;
+        
+        let results = '';
+        
+        if (amount > 0) {
+          // Calculate GST on amount
+          const gstAmount = amount * gstRate;
+          const totalWithGST = amount + gstAmount;
+          
+          results = `
+            <div class="result-row">
+              <span class="result-label">Amount (₹)</span>
+              <span class="result-value">${amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">GST (${this.gstRateSelect.value}%)</span>
+              <span class="result-value">${gstAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Total (₹)</span>
+              <span class="result-value">${totalWithGST.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+          `;
+          
+          this.saveToHistory({ type: 'amount', amount, gstRate: this.gstRateSelect.value, gstAmount, total: totalWithGST });
+        } 
+        else if (totalAmount > 0) {
+          // Calculate GST from total
+          const gstAmount = totalAmount * (gstRate2 / (1 + gstRate2));
+          const netAmount = totalAmount - gstAmount;
+          
+          results = `
+            <div class="result-row">
+              <span class="result-label">Total Amount (₹)</span>
+              <span class="result-value">${totalAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">GST (${this.gstRateSelect2.value}%)</span>
+              <span class="result-value">${gstAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Net Amount (₹)</span>
+              <span class="result-value">${netAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+          `;
+          
+          this.saveToHistory({ type: 'total', totalAmount, gstRate: this.gstRateSelect2.value, gstAmount, netAmount });
+        } 
+        else {
+          this.showError('Enter amount OR total amount');
+          return;
+        }
+        
+        this.resultsDiv.innerHTML = results;
+        this.resultsDiv.style.display = 'block';
+      }
+      
+      showError(message) {
+        this.resultsDiv.innerHTML = `<div class="error-message">${message}</div>`;
+        this.resultsDiv.style.display = 'block';
+      }
+      
+      saveToHistory(data) {
+        this.history.unshift(data);
+        if (this.history.length > 10) this.history = this.history.slice(0, 10);
+        localStorage.setItem('axorium_gst_history', JSON.stringify(this.history));
+        this.renderHistory();
+      }
+      
+      renderHistory() {
+        if (this.history.length === 0) {
+          this.historyDiv.innerHTML = '<div style="color: #6b7280; text-align: center; padding: 2rem;">No GST calculations yet</div>';
+          return;
+        }
+        
+        this.historyDiv.innerHTML = this.history.map((item, index) => {
+          if (item.type === 'amount') {
+            return `
+              <div class="history-item" onclick="gstCalc.loadCalc(${index})">
+                ₹${item.amount.toLocaleString()} + ${item.gstRate}% GST = ₹${item.total.toLocaleString()}
+              </div>
+            `;
+          } else {
+            return `
+              <div class="history-item" onclick="gstCalc.loadCalc(${index})">
+                Total ₹${item.totalAmount.toLocaleString()} → Net ₹${item.netAmount.toLocaleString()} (${item.gstRate}% GST)
+              </div>
+            `;
+          }
+        }).join('');
+      }
+      
+      loadCalc(index) {
+        const item = this.history[index];
+        if (item.type === 'amount') {
+          this.amountInput.value = item.amount;
+          this.gstRateSelect.value = item.gstRate;
+        } else {
+          this.totalAmountInput.value = item.totalAmount;
+          this.gstRateSelect2.value = item.gstRate;
+        }
+        this.calculate();
+      }
+    }
+    
+    const gstCalc = new GSTCalculator();
+  </script>
 </body>
 </html>
-
-
-<!-- TOOL EXPLANATION SECTION -->
 
 <div class="tool-explanation">
 
