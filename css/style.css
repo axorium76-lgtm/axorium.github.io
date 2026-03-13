@@ -277,3 +277,34 @@ font-size:15px;
 }
 
 }
+
+.tool-faq {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #111116;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.08);
+}
+
+.tool-faq h2 {
+    color: gold;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.faq-item p {
+    font-size: 16px;
+    color: #ccc;
+    line-height: 1.6;
+    }
