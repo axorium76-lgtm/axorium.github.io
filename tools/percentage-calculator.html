@@ -4,48 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Percentage Calculator | AXORIUM</title>
-  <meta name="description" content="Professional percentage calculator for all calculations. What is X% of Y? Percentage increase/decrease.">
+  <meta name="description" content="Fast percentage calculator - What is X% of Y?">
   
-  <!-- SEO Professional -->
+  <!-- SEO -->
   <link rel="canonical" href="https://axorium76-lgtm.github.io/axorium.github.io/percentage-calculator.html">
-  <meta property="og:title" content="Percentage Calculator | AXORIUM">
-  <meta property="og:description" content="Fast, accurate percentage calculations">
-  <meta property="og:image" content="https://axorium76-lgtm.github.io/axorium.github.io/og-percentage.jpg">
   
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   
   <style>
-    /* PROFESSIONAL GLASS DESIGN */
+    /* CLEAN PROFESSIONAL STYLES - MATCHES YOUR DESIGN */
     .calc-container {
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 2rem 1rem;
     }
     
-    .calc-glass {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    .tool-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .tool-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .tool-card {
+      background: #fff;
+      border-radius: 20px;
       padding: 2.5rem;
-      margin: 2rem 0;
-      transition: all 0.3s ease;
-    }
-    
-    .calc-glass:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 35px 65px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
     }
     
     .input-group {
-      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
     
-    .input-wrapper {
+    @media (max-width: 600px) {
+      .input-group {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    
+    .input-field {
       position: relative;
-      margin-bottom: 1rem;
     }
     
     .input-label {
@@ -56,100 +70,106 @@
       font-size: 0.95rem;
     }
     
-    .tool-input {
+    .calc-input {
       width: 100%;
       padding: 1rem 1.2rem;
-      border: 2px solid rgba(0,0,0,0.1);
+      border: 2px solid #e5e7eb;
       border-radius: 12px;
       font-size: 1.1rem;
+      font-weight: 500;
       transition: all 0.3s ease;
-      background: rgba(255,255,255,0.8);
+      background: #fafafa;
     }
     
-    .tool-input:focus {
+    .calc-input:focus {
       outline: none;
       border-color: #667eea;
-      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-      transform: scale(1.02);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+      transform: translateY(-1px);
     }
     
-    .calculate-btn {
+    .calc-btn {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
-      padding: 1.2rem 2.5rem;
+      padding: 1.2rem 3rem;
       border-radius: 12px;
       font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
       width: 100%;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      margin-top: 1rem;
     }
     
-    .calculate-btn:hover {
+    .calc-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 15px 30px rgba(102,126,234,0.3);
     }
     
-    .calculate-btn:active {
-      transform: translateY(0);
-    }
-    
-    .results {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+    .results-section {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border-radius: 16px;
-      border-left: 4px solid #667eea;
+      padding: 2rem;
+      border-left: 5px solid #667eea;
+      margin-top: 2rem;
+      display: none;
     }
     
-    .result-item {
+    .result-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.8rem;
-      font-size: 1.1rem;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .result-row:last-child {
+      border-bottom: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e293b;
+      padding-top: 1.5rem;
+    }
+    
+    .result-label {
+      font-weight: 500;
+      color: #475569;
     }
     
     .result-value {
-      font-weight: 700;
-      color: #333;
-      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 1.2rem;
     }
     
-    .error {
-      background: rgba(239,68,68,0.1);
-      border-left-color: #ef4444;
+    .error-message {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
       color: #dc2626;
       padding: 1rem;
-      border-radius: 8px;
+      border-radius: 12px;
+      margin-top: 1rem;
     }
     
-    .loading {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #666;
+    .history-section {
+      margin-top: 2rem;
     }
     
-    .spinner {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #f3f3f3;
-      border-top: 2px solid #667eea;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
+    .history-item {
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-left: 3px solid #e2e8f0;
     }
     
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    @media (max-width: 600px) {
-      .calc-glass { padding: 1.5rem; margin: 1rem; }
-      h1 { font-size: 2rem !important; }
+    .history-item:hover {
+      background: #e2e8f0;
+      border-left-color: #667eea;
     }
   </style>
 </head>
@@ -164,132 +184,133 @@
   </nav>
 
   <div class="calc-container">
-    <header>
+    <div class="tool-header">
       <h1>📊 Percentage Calculator</h1>
-      <p>Professional calculator for all percentage calculations</p>
-    </header>
+      <p>Calculate any percentage instantly and accurately</p>
+    </div>
 
-    <div class="calc-glass" id="calculator">
+    <div class="tool-card">
       <div class="input-group">
-        <div class="input-wrapper">
-          <label class="input-label" for="percent">Percentage (%)</label>
-          <input type="number" id="percent" class="tool-input" placeholder="25" min="0" max="1000" step="0.01">
+        <div class="input-field">
+          <label class="input-label">Percentage (%)</label>
+          <input type="number" id="percent" class="calc-input" placeholder="25" min="0" max="10000" step="0.01">
         </div>
-        
-        <div class="input-wrapper">
-          <label class="input-label" for="number">Of Number</label>
-          <input type="number" id="number" class="tool-input" placeholder="200" min="0" step="0.01">
+        <div class="input-field">
+          <label class="input-label">Number</label>
+          <input type="number" id="number" class="calc-input" placeholder="200" min="0" step="0.01">
         </div>
       </div>
       
-      <button class="calculate-btn" onclick="calc.calculate()">
-        🧮 Calculate Percentage
+      <button class="calc-btn" onclick="calculator.calculate()">
+        🧮 Calculate
       </button>
       
-      <div id="results" class="results" style="display: none;"></div>
+      <div id="results" class="results-section"></div>
     </div>
 
-    <!-- History -->
-    <div class="calc-glass">
-      <h3>📋 Recent Calculations</h3>
-      <div id="history"></div>
+    <div class="tool-card history-section">
+      <h3 style="margin-bottom: 1rem; color: #1e293b;">📋 Recent Calculations</h3>
+      <div id="history-list"></div>
     </div>
   </div>
 
-  <footer>© 2026 AXORIUM | Professional Tools</footer>
+  <footer>© 2026 AXORIUM</footer>
 
   <script>
-    class ProfessionalCalculator {
+    class PercentageCalculator {
       constructor() {
-        this.form = document.getElementById('calculator');
-        this.results = document.getElementById('results');
-        this.history = JSON.parse(localStorage.getItem('percentHistory')) || [];
+        this.percentInput = document.getElementById('percent');
+        this.numberInput = document.getElementById('number');
+        this.resultsDiv = document.getElementById('results');
+        this.historyDiv = document.getElementById('history-list');
+        this.history = JSON.parse(localStorage.getItem('axorium_percent_history')) || [];
         this.init();
       }
       
       init() {
-        // Real-time calculation
-        document.getElementById('percent').addEventListener('input', this.debounce(this.calculate.bind(this), 200));
-        document.getElementById('number').addEventListener('input', this.debounce(this.calculate.bind(this), 200));
+        // Real-time updates
+        this.percentInput.addEventListener('input', this.debounce(this.updateLive.bind(this), 150));
+        this.numberInput.addEventListener('input', this.debounce(this.updateLive.bind(this), 150));
+        
         this.renderHistory();
       }
       
-      debounce(func, wait) {
+      debounce(func, delay) {
         let timeout;
-        return function executedFunction(...args) {
-          const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-          };
+        return (...args) => {
           clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
+          timeout = setTimeout(() => func.apply(this, args), delay);
         };
       }
       
+      updateLive() {
+        if (this.percentInput.value && this.numberInput.value) {
+          this.calculate();
+        }
+      }
+      
       calculate() {
-        const percent = parseFloat(document.getElementById('percent').value) || 0;
-        const number = parseFloat(document.getElementById('number').value) || 0;
+        const percent = parseFloat(this.percentInput.value) || 0;
+        const number = parseFloat(this.numberInput.value) || 0;
         
-        if (percent === 0 || number === 0) {
-          this.showError('Enter both values');
+        if (!percent || !number) {
+          this.showError('Please enter both values');
           return;
         }
         
         const result = (percent / 100) * number;
-        this.renderResults({ percent, number, result });
-        this.saveToHistory({ percent, number, result });
-      }
-      
-      renderResults(data) {
-        this.results.innerHTML = `
-          <div class="result-item">
-            <span>${data.percent}%</span>
-            <span>of</span>
-            <span>${data.number.toLocaleString()}</span>
+        
+        this.resultsDiv.innerHTML = `
+          <div class="result-row">
+            <span class="result-label">${percent}%</span>
+            <span class="result-label">of</span>
+            <span class="result-value">${number.toLocaleString()}</span>
           </div>
-          <div style="font-size: 2rem; font-weight: 800; color: #667eea; margin-top: 1rem;">
-            = ${data.result.toLocaleString(undefined, {maximumFractionDigits: 2})}
+          <div class="result-row">
+            <span class="result-label">Result:</span>
+            <span class="result-value">${result.toLocaleString(undefined, {maximumFractionDigits: 2})}</span>
           </div>
         `;
-        this.results.style.display = 'block';
-      }
-      
-      showError(message) {
-        this.results.innerHTML = `<div class="error">⚠️ ${message}</div>`;
-        this.results.style.display = 'block';
-      }
-      
-      saveToHistory(calc) {
-        this.history.unshift(calc);
-        if (this.history.length > 5) this.history = this.history.slice(0, 5);
-        localStorage.setItem('percentHistory', JSON.stringify(this.history));
+        this.resultsDiv.style.display = 'block';
+        
+        // Save to history
+        const calcData = { percent, number, result, time: new Date().toLocaleTimeString() };
+        this.history.unshift(calcData);
+        if (this.history.length > 10) this.history = this.history.slice(0, 10);
+        localStorage.setItem('axorium_percent_history', JSON.stringify(this.history));
         this.renderHistory();
       }
       
+      showError(message) {
+        this.resultsDiv.innerHTML = `<div class="error-message">${message}</div>`;
+        this.resultsDiv.style.display = 'block';
+      }
+      
       renderHistory() {
-        const historyDiv = document.getElementById('history');
         if (this.history.length === 0) {
-          historyDiv.innerHTML = '<p style="color: #666; font-style: italic;">No calculations yet</p>';
+          this.historyDiv.innerHTML = '<div style="color: #94a3b8; text-align: center; padding: 2rem;">No calculations yet</div>';
           return;
         }
         
-        historyDiv.innerHTML = this.history.map(item => 
-          `<div style="padding: 0.8rem; background: rgba(0,0,0,0.05); border-radius: 8px; margin-bottom: 0.5rem; cursor: pointer;" 
-                onclick="calc.loadHistory(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-            ${item.percent}% of ${item.number.toLocaleString()} = ${item.result.toLocaleString()}
-          </div>`
-        ).join('');
+        this.historyDiv.innerHTML = this.history.map((item, index) => `
+          <div class="history-item" onclick="calculator.loadCalc(${index})">
+            <strong>${item.percent}%</strong> of <strong>${item.number.toLocaleString()}</strong> 
+            = <strong style="color: #667eea;">${item.result.toLocaleString()}</strong>
+            <small style="float: right; color: #64748b;">${item.time}</small>
+          </div>
+        `).join('');
       }
       
-      loadHistory(item) {
-        document.getElementById('percent').value = item.percent;
-        document.getElementById('number').value = item.number;
+      loadCalc(index) {
+        const item = this.history[index];
+        this.percentInput.value = item.percent;
+        this.numberInput.value = item.number;
         this.calculate();
       }
     }
     
-    // Initialize
-    const calc = new ProfessionalCalculator();
+    // Start calculator
+    const calculator = new PercentageCalculator();
   </script>
 </body>
   </html>
