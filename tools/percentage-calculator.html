@@ -1,76 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Percentage Calculator | AXORIUM</title>
-
-<link rel="stylesheet" href="../css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator | AXORIUM</title>
+  <meta name="description" content="Professional percentage calculator for all calculations. What is X% of Y? Percentage increase/decrease.">
+  
+  <!-- SEO Professional -->
+  <link rel="canonical" href="https://axorium76-lgtm.github.io/axorium.github.io/percentage-calculator.html">
+  <meta property="og:title" content="Percentage Calculator | AXORIUM">
+  <meta property="og:description" content="Fast, accurate percentage calculations">
+  <meta property="og:image" content="https://axorium76-lgtm.github.io/axorium.github.io/og-percentage.jpg">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <style>
+    /* PROFESSIONAL GLASS DESIGN */
+    .calc-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .calc-glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+      padding: 2.5rem;
+      margin: 2rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .calc-glass:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 35px 65px rgba(0,0,0,0.15);
+    }
+    
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    
+    .input-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    
+    .tool-input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid rgba(0,0,0,0.1);
+      border-radius: 12px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.8);
+    }
+    
+    .tool-input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      transform: scale(1.02);
+    }
+    
+    .calculate-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 1.2rem 2.5rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .calculate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    }
+    
+    .calculate-btn:active {
+      transform: translateY(0);
+    }
+    
+    .results {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+      border-radius: 16px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+    
+    .result-value {
+      font-weight: 700;
+      color: #333;
+      font-size: 1.3rem;
+    }
+    
+    .error {
+      background: rgba(239,68,68,0.1);
+      border-left-color: #ef4444;
+      color: #dc2626;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    
+    .loading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #666;
+    }
+    
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @media (max-width: 600px) {
+      .calc-glass { padding: 1.5rem; margin: 1rem; }
+      h1 { font-size: 2rem !important; }
+    }
+  </style>
 </head>
 
 <body>
+  <nav class="navbar">
+    <div class="logo">AXORIUM</div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../tools.html">Tools</a></li>
+    </ul>
+  </nav>
 
-<nav class="navbar">
-<div class="logo">AXORIUM</div>
+  <div class="calc-container">
+    <header>
+      <h1>📊 Percentage Calculator</h1>
+      <p>Professional calculator for all percentage calculations</p>
+    </header>
 
-<ul class="nav-links">
-<li><a href="../index.html">Home</a></li>
-<li><a href="../tools.html">Tools</a></li>
-</ul>
-</nav>
+    <div class="calc-glass" id="calculator">
+      <div class="input-group">
+        <div class="input-wrapper">
+          <label class="input-label" for="percent">Percentage (%)</label>
+          <input type="number" id="percent" class="tool-input" placeholder="25" min="0" max="1000" step="0.01">
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label" for="number">Of Number</label>
+          <input type="number" id="number" class="tool-input" placeholder="200" min="0" step="0.01">
+        </div>
+      </div>
+      
+      <button class="calculate-btn" onclick="calc.calculate()">
+        🧮 Calculate Percentage
+      </button>
+      
+      <div id="results" class="results" style="display: none;"></div>
+    </div>
 
-<section class="tools-section">
+    <!-- History -->
+    <div class="calc-glass">
+      <h3>📋 Recent Calculations</h3>
+      <div id="history"></div>
+    </div>
+  </div>
 
-<h1>Percentage Calculator</h1>
+  <footer>© 2026 AXORIUM | Professional Tools</footer>
 
-<div class="tool-card">
-
-<p>Calculate percentages easily.</p>
-
-<h3>What is X% of Y?</h3>
-
-<input type="number" id="percent" placeholder="Enter percentage" class="tool-input">
-
-<input type="number" id="number" placeholder="Enter number" class="tool-input">
-
-<button onclick="calculatePercent()">
-Calculate
-</button>
-
-<div id="result"></div>
-
-</div>
-
-</section>
-
-<footer>
-© 2026 AXORIUM
-</footer>
-
-<script>
-
-function calculatePercent(){
-
-let percent = document.getElementById("percent").value;
-let number = document.getElementById("number").value;
-
-if(percent === "" || number === ""){
-document.getElementById("result").innerHTML = "Please enter both values.";
-return;
-}
-
-let result = (percent / 100) * number;
-
-document.getElementById("result").innerHTML =
-percent + "% of " + number + " = " + result;
-
-}
-
-</script>
-
+  <script>
+    class ProfessionalCalculator {
+      constructor() {
+        this.form = document.getElementById('calculator');
+        this.results = document.getElementById('results');
+        this.history = JSON.parse(localStorage.getItem('percentHistory')) || [];
+        this.init();
+      }
+      
+      init() {
+        // Real-time calculation
+        document.getElementById('percent').addEventListener('input', this.debounce(this.calculate.bind(this), 200));
+        document.getElementById('number').addEventListener('input', this.debounce(this.calculate.bind(this), 200));
+        this.renderHistory();
+      }
+      
+      debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+      
+      calculate() {
+        const percent = parseFloat(document.getElementById('percent').value) || 0;
+        const number = parseFloat(document.getElementById('number').value) || 0;
+        
+        if (percent === 0 || number === 0) {
+          this.showError('Enter both values');
+          return;
+        }
+        
+        const result = (percent / 100) * number;
+        this.renderResults({ percent, number, result });
+        this.saveToHistory({ percent, number, result });
+      }
+      
+      renderResults(data) {
+        this.results.innerHTML = `
+          <div class="result-item">
+            <span>${data.percent}%</span>
+            <span>of</span>
+            <span>${data.number.toLocaleString()}</span>
+          </div>
+          <div style="font-size: 2rem; font-weight: 800; color: #667eea; margin-top: 1rem;">
+            = ${data.result.toLocaleString(undefined, {maximumFractionDigits: 2})}
+          </div>
+        `;
+        this.results.style.display = 'block';
+      }
+      
+      showError(message) {
+        this.results.innerHTML = `<div class="error">⚠️ ${message}</div>`;
+        this.results.style.display = 'block';
+      }
+      
+      saveToHistory(calc) {
+        this.history.unshift(calc);
+        if (this.history.length > 5) this.history = this.history.slice(0, 5);
+        localStorage.setItem('percentHistory', JSON.stringify(this.history));
+        this.renderHistory();
+      }
+      
+      renderHistory() {
+        const historyDiv = document.getElementById('history');
+        if (this.history.length === 0) {
+          historyDiv.innerHTML = '<p style="color: #666; font-style: italic;">No calculations yet</p>';
+          return;
+        }
+        
+        historyDiv.innerHTML = this.history.map(item => 
+          `<div style="padding: 0.8rem; background: rgba(0,0,0,0.05); border-radius: 8px; margin-bottom: 0.5rem; cursor: pointer;" 
+                onclick="calc.loadHistory(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+            ${item.percent}% of ${item.number.toLocaleString()} = ${item.result.toLocaleString()}
+          </div>`
+        ).join('');
+      }
+      
+      loadHistory(item) {
+        document.getElementById('percent').value = item.percent;
+        document.getElementById('number').value = item.number;
+        this.calculate();
+      }
+    }
+    
+    // Initialize
+    const calc = new ProfessionalCalculator();
+  </script>
 </body>
   </html>
