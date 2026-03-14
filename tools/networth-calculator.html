@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Net Worth Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">AXORIUM</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../tools.html">Tools</a></li>
+  </ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Net Worth Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate your net worth instantly.</p>
+
+<input type="number" id="assets" class="tool-input" placeholder="Enter Total Assets" />
+<input type="number" id="liabilities" class="tool-input" placeholder="Enter Total Liabilities" />
+
+<button onclick="calculateNetWorth()">Calculate Net Worth</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+function calculateNetWorth() {
+    let assets = parseFloat(document.getElementById("assets").value);
+    let liabilities = parseFloat(document.getElementById("liabilities").value);
+
+    if (isNaN(assets) || isNaN(liabilities)) {
+        document.getElementById("result").innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    let netWorth = assets - liabilities;
+
+    document.getElementById("result").innerHTML =
+        "Net Worth: ₹" + netWorth.toFixed(2);
+}
+</script>
+
+</body>
+</html>
+
+<!-- TOOL EXPLANATION SECTION -->
+
+<div class="tool-explanation">
+
+<h2>What is a Net Worth Calculator?</h2>
+<p>
+A Net Worth Calculator is a financial tool that calculates your net worth by subtracting total liabilities 
+from total assets. It gives a clear picture of your financial standing.
+</p>
+
+<h2>How the Calculation Works</h2>
+<p>
+The calculator adds up all your assets (cash, investments, property) and subtracts all your liabilities 
+(loans, debts, mortgages) to compute net worth.
+</p>
+
+<h2>Example</h2>
+<p>
+If your total assets are ₹10,00,000 and liabilities are ₹4,00,000, the calculator will show:
+Net Worth = ₹6,00,000.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>
+A Net Worth Calculator helps individuals understand their financial health, plan investments, and 
+track progress over time.
+</p>
+
+  </div>
