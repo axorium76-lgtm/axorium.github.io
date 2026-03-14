@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Salary Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">AXORIUM</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../tools.html">Tools</a></li>
+  </ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Salary Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate net salary after deductions instantly.</p>
+
+<input type="number" id="basic" class="tool-input" placeholder="Enter Basic Salary" />
+<input type="number" id="hra" class="tool-input" placeholder="Enter HRA" />
+<input type="number" id="allowance" class="tool-input" placeholder="Enter Other Allowances" />
+<input type="number" id="tax" class="tool-input" placeholder="Enter Tax % Deduction" />
+
+<button onclick="calculateSalary()">Calculate Salary</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+function calculateSalary() {
+    let basic = parseFloat(document.getElementById("basic").value);
+    let hra = parseFloat(document.getElementById("hra").value);
+    let allowance = parseFloat(document.getElementById("allowance").value);
+    let tax = parseFloat(document.getElementById("tax").value);
+
+    if (isNaN(basic) || isNaN(hra) || isNaN(allowance) || isNaN(tax)) {
+        document.getElementById("result").innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    let gross = basic + hra + allowance;
+    let taxAmount = (gross * tax) / 100;
+    let netSalary = gross - taxAmount;
+
+    document.getElementById("result").innerHTML =
+        "Gross Salary: ₹" + gross.toFixed(2) +
+        "<br>Tax Deduction: ₹" + taxAmount.toFixed(2) +
+        "<br>Net Salary: ₹" + netSalary.toFixed(2);
+}
+</script>
+
+</body>
+</html>
+
+<!-- TOOL EXPLANATION SECTION -->
+
+<div class="tool-explanation">
+
+<h2>What is a Salary Calculator?</h2>
+<p>
+A Salary Calculator is a financial tool used to calculate net salary after accounting for tax deductions, HRA, and allowances. 
+It shows how much an employee actually takes home.
+</p>
+
+<h2>How the Calculation Works</h2>
+<p>
+The calculator adds basic salary, HRA, and allowances to get the gross salary. 
+It then calculates tax deduction based on the provided percentage and subtracts it from gross salary to display net salary.
+</p>
+
+<h2>Example</h2>
+<p>
+If your basic salary is ₹50,000, HRA ₹10,000, allowance ₹5,000, and tax deduction is 10%, the calculator will show:
+Gross Salary = ₹65,000, Tax Deduction = ₹6,500, Net Salary = ₹58,500.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>
+A Salary Calculator helps employees, freelancers, and business owners quickly calculate take-home pay and understand deductions.
+It prevents manual errors and saves time in financial planning.
+</p>
+
+</div>
