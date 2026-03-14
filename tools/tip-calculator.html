@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tip Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">AXORIUM</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../tools.html">Tools</a></li>
+  </ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Tip Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate tip amount and total bill instantly.</p>
+
+<input type="number" id="bill" class="tool-input" placeholder="Enter Bill Amount" />
+<input type="number" id="tipPercent" class="tool-input" placeholder="Enter Tip % (e.g., 10)" />
+
+<button onclick="calculateTip()">Calculate Tip</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+function calculateTip() {
+    let bill = parseFloat(document.getElementById("bill").value);
+    let tipPercent = parseFloat(document.getElementById("tipPercent").value);
+
+    if (isNaN(bill) || isNaN(tipPercent)) {
+        document.getElementById("result").innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    let tipAmount = (bill * tipPercent) / 100;
+    let total = bill + tipAmount;
+
+    document.getElementById("result").innerHTML =
+        "Tip Amount: ₹" + tipAmount.toFixed(2) +
+        "<br>Total Bill: ₹" + total.toFixed(2);
+}
+</script>
+
+</body>
+</html>
+
+<!-- TOOL EXPLANATION SECTION -->
+
+<div class="tool-explanation">
+
+<h2>What is a Tip Calculator?</h2>
+<p>
+A Tip Calculator is a simple financial tool used to calculate the tip amount for a bill 
+and the total bill including tip. It helps avoid manual calculations and ensures accurate tipping.
+</p>
+
+<h2>How the Calculation Works</h2>
+<p>
+The calculator multiplies the bill amount by the tip percentage and divides by 100 to get the tip amount. 
+It then adds this tip to the bill to display the total payable amount.
+</p>
+
+<h2>Example</h2>
+<p>
+If your bill is ₹1,000 and you want to tip 10%, the calculator will show:
+Tip Amount = ₹100, Total Bill = ₹1,100.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>
+A Tip Calculator saves time, prevents mistakes, and ensures correct tipping in restaurants, hotels, or delivery services.
+</p>
+
+  </div>
