@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tax Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">AXORIUM</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../tools.html">Tools</a></li>
+  </ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Tax Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate income tax instantly based on your income.</p>
+
+<input
+type="number"
+id="income"
+class="tool-input"
+placeholder="Enter your Income"
+/>
+
+<input
+type="number"
+id="taxRate"
+class="tool-input"
+placeholder="Enter Tax Rate %"
+/>
+
+<button onclick="calculateTax()">Calculate Tax</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+function calculateTax() {
+    let income = parseFloat(document.getElementById("income").value);
+    let taxRate = parseFloat(document.getElementById("taxRate").value);
+
+    if (isNaN(income) || isNaN(taxRate)) {
+        document.getElementById("result").innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    let taxAmount = (income * taxRate) / 100;
+    let netIncome = income - taxAmount;
+
+    document.getElementById("result").innerHTML =
+        "Tax Amount: ₹" + taxAmount.toFixed(2) +
+        "<br>Net Income After Tax: ₹" + netIncome.toFixed(2);
+}
+</script>
+
+</body>
+</html>
+
+<!-- TOOL EXPLANATION SECTION -->
+
+<div class="tool-explanation">
+
+<h2>What is a Tax Calculator?</h2>
+<p>
+A Tax Calculator is a financial tool used to calculate the tax amount you owe based on your income 
+and tax rate. It instantly shows how much tax you need to pay and the net income after tax.
+</p>
+
+<h2>How the Calculation Works</h2>
+<p>
+The calculator multiplies your income by the tax rate (in percentage) and divides by 100. 
+This gives the tax amount. Then it subtracts the tax from your income to show your net income.
+</p>
+
+<h2>Example</h2>
+<p>
+If your income is ₹50,000 and the tax rate is 10%, the calculator will show ₹5,000 as Tax Amount 
+and ₹45,000 as Net Income After Tax.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>
+A Tax Calculator saves time, prevents mistakes, and helps you plan your finances. 
+It is useful for individuals, freelancers, and small business owners to know their tax obligations instantly.
+</p>
+
+  </div>
