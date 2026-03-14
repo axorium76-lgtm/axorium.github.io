@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crypto Profit Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">AXORIUM</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../tools.html">Tools</a></li>
+  </ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Crypto Profit Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate profit or loss from crypto trades instantly.</p>
+
+<input type="number" id="buyPrice" class="tool-input" placeholder="Enter Buy Price" />
+<input type="number" id="sellPrice" class="tool-input" placeholder="Enter Sell Price" />
+<input type="number" id="quantity" class="tool-input" placeholder="Enter Quantity" />
+
+<button onclick="calculateCryptoProfit()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+function calculateCryptoProfit() {
+    let buyPrice = parseFloat(document.getElementById("buyPrice").value);
+    let sellPrice = parseFloat(document.getElementById("sellPrice").value);
+    let quantity = parseFloat(document.getElementById("quantity").value);
+
+    if (isNaN(buyPrice) || isNaN(sellPrice) || isNaN(quantity)) {
+        document.getElementById("result").innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    let profitLoss = (sellPrice - buyPrice) * quantity;
+    let status = profitLoss >= 0 ? "Profit" : "Loss";
+
+    document.getElementById("result").innerHTML =
+        status + ": ₹" + Math.abs(profitLoss).toFixed(2);
+}
+</script>
+
+</body>
+</html>
+
+<!-- TOOL EXPLANATION SECTION -->
+
+<div class="tool-explanation">
+
+<h2>What is a Crypto Profit Calculator?</h2>
+<p>
+A Crypto Profit Calculator helps traders calculate the profit or loss made from cryptocurrency trades. 
+It uses the buy price, sell price, and quantity to provide instant results.
+</p>
+
+<h2>How the Calculation Works</h2>
+<p>
+The calculator subtracts the buy price from the sell price, multiplies by the quantity, and displays whether 
+you made a profit or a loss.
+</p>
+
+<h2>Example</h2>
+<p>
+If you bought 2 BTC at ₹20,00,000 each and sold at ₹22,00,000, the calculator shows: Profit = ₹4,00,000.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>
+This tool is crucial for crypto traders to quickly analyze trades, understand gains or losses, and plan 
+future trading strategies.
+</p>
+
+  </div>
