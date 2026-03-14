@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fuel Cost Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo">AXORIUM</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../tools.html">Tools</a></li>
+  </ul>
+</nav>
+
+<section class="tools-section">
+
+<h1>Fuel Cost Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate fuel expenses for your journey instantly.</p>
+
+<input type="number" id="distance" class="tool-input" placeholder="Enter Distance (km)" />
+<input type="number" id="mileage" class="tool-input" placeholder="Enter Vehicle Mileage (km/l)" />
+<input type="number" id="fuelPrice" class="tool-input" placeholder="Enter Fuel Price (₹/L)" />
+
+<button onclick="calculateFuelCost()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+function calculateFuelCost() {
+    let distance = parseFloat(document.getElementById("distance").value);
+    let mileage = parseFloat(document.getElementById("mileage").value);
+    let fuelPrice = parseFloat(document.getElementById("fuelPrice").value);
+
+    if (isNaN(distance) || isNaN(mileage) || isNaN(fuelPrice) || mileage <= 0) {
+        document.getElementById("result").innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    let fuelNeeded = distance / mileage;
+    let totalCost = fuelNeeded * fuelPrice;
+
+    document.getElementById("result").innerHTML =
+        "Fuel Needed: " + fuelNeeded.toFixed(2) + " L" +
+        "<br>Total Cost: ₹" + totalCost.toFixed(2);
+}
+</script>
+
+</body>
+</html>
+
+<!-- TOOL EXPLANATION SECTION -->
+
+<div class="tool-explanation">
+
+<h2>What is a Fuel Cost Calculator?</h2>
+<p>
+A Fuel Cost Calculator helps users estimate the fuel consumption and cost for a trip based on distance, 
+vehicle mileage, and fuel price.
+</p>
+
+<h2>How the Calculation Works</h2>
+<p>
+The calculator divides the distance by the vehicle’s mileage to find liters of fuel required, then multiplies 
+by the fuel price to get the total cost.
+</p>
+
+<h2>Example</h2>
+<p>
+If your trip is 500 km, your vehicle mileage is 20 km/l, and fuel price is ₹100/l, the calculator shows:
+Fuel Needed = 25 L, Total Cost = ₹2500.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>
+This tool saves time and helps in budgeting fuel expenses for trips, daily commutes, or logistics planning.
+</p>
+
+</div>
