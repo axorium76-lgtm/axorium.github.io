@@ -41,6 +41,13 @@
 <priority>0.8</priority>
 </url>
 
+  <url>
+<loc>https://axorium.github.io/tools/fuel-cost-calculator.html</loc>
+<lastmod>2026-03-14</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+
 <url>
 <loc>https://axorium76-lgtm.github.io/axorium.github.io/tools/risk-reward.html</loc>
 <lastmod>2026-03-14</lastmod>
