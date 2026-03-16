@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Change Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Percentage Change Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate percentage increase or decrease between two values.</p>
+
+<input type="number" id="oldValue" class="tool-input" placeholder="Original Value">
+<input type="number" id="newValue" class="tool-input" placeholder="New Value">
+
+<button onclick="calculateChange()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculateChange(){
+
+let oldValue=parseFloat(document.getElementById("oldValue").value)
+let newValue=parseFloat(document.getElementById("newValue").value)
+
+if(isNaN(oldValue)||isNaN(newValue)||oldValue===0){
+document.getElementById("result").innerHTML="Please enter valid values."
+return
+}
+
+let change=((newValue-oldValue)/oldValue)*100
+
+let type="Increase"
+if(change<0){type="Decrease"}
+
+document.getElementById("result").innerHTML=
+"Percentage "+type+": "+Math.abs(change).toFixed(2)+"%"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Percentage Change Calculator?</h2>
+<p>A Percentage Change Calculator determines the percentage increase or decrease between two values.</p>
+
+<h2>How It Works</h2>
+<p>The calculator compares a new value with the original value and expresses the difference as a percentage.</p>
+
+<h2>Example</h2>
+<p>If a stock price increases from ₹100 to ₹120, the percentage increase is 20%.</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>This calculator is widely used in finance, investing, economics, and business analysis.</p>
+
+</div>
