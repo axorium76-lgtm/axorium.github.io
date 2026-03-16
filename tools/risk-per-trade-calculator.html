@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risk Per Trade Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Risk Per Trade Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate how much capital you should risk per trade.</p>
+
+<input type="number" id="account" class="tool-input" placeholder="Trading Account Size (₹)">
+
+<input type="number" id="risk" class="tool-input" placeholder="Risk Percentage (%)">
+
+<button onclick="calculateRisk()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculateRisk(){
+
+let account=parseFloat(document.getElementById("account").value)
+let risk=parseFloat(document.getElementById("risk").value)
+
+if(isNaN(account)||isNaN(risk)||account<=0){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let riskAmount=account*(risk/100)
+
+document.getElementById("result").innerHTML=
+"<strong>Maximum Risk Per Trade: ₹"+riskAmount.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Risk Per Trade Calculator?</h2>
+<p>A Risk Per Trade Calculator helps traders determine the maximum amount of money they should risk on a single trade based on their trading capital and risk percentage.</p>
+
+<h2>Why Risk Management Matters</h2>
+<p>Professional traders protect their capital by limiting the amount they risk on each trade. This prevents large losses that could damage the trading account.</p>
+
+<h2>Example</h2>
+<p>If your trading account is ₹1,00,000 and you risk 2% per trade, the maximum risk allowed per trade would be ₹2,000.</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>This calculator helps traders maintain disciplined risk management and avoid emotional or oversized trades.</p>
+
+</div>
