@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EMI Prepayment Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+
+</nav>
+
+<section class="tools-section">
+
+<h1>EMI Prepayment Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate how much interest you can save by making a loan prepayment.</p>
+
+<input type="number" id="loan" class="tool-input" placeholder="Loan Amount (₹)">
+
+<input type="number" id="rate" class="tool-input" placeholder="Annual Interest Rate (%)">
+
+<input type="number" id="years" class="tool-input" placeholder="Loan Tenure (Years)">
+
+<input type="number" id="prepayment" class="tool-input" placeholder="Prepayment Amount (₹)">
+
+<button onclick="calculatePrepayment()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculatePrepayment(){
+
+let loan=parseFloat(document.getElementById("loan").value)
+
+let rate=parseFloat(document.getElementById("rate").value)
+
+let years=parseFloat(document.getElementById("years").value)
+
+let prepayment=parseFloat(document.getElementById("prepayment").value)
+
+if(isNaN(loan)||isNaN(rate)||isNaN(years)||isNaN(prepayment)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let monthlyRate=rate/100/12
+
+let months=years*12
+
+let emi=(loan*monthlyRate*Math.pow(1+monthlyRate,months))/(Math.pow(1+monthlyRate,months)-1)
+
+let totalPayment=emi*months
+
+let totalInterest=totalPayment-loan
+
+let newLoan=loan-prepayment
+
+let newEmi=(newLoan*monthlyRate*Math.pow(1+monthlyRate,months))/(Math.pow(1+monthlyRate,months)-1)
+
+let newTotal=newEmi*months
+
+let newInterest=newTotal-newLoan
+
+let saved=totalInterest-newInterest
+
+document.getElementById("result").innerHTML=
+
+"Monthly EMI: ₹"+emi.toFixed(2)+
+"<br>Total Interest (Without Prepayment): ₹"+totalInterest.toFixed(2)+
+"<br>Interest After Prepayment: ₹"+newInterest.toFixed(2)+
+"<br><strong>Interest Saved: ₹"+saved.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is an EMI Prepayment Calculator?</h2>
+
+<p>
+An EMI Prepayment Calculator helps borrowers understand how much interest they can save by making an early payment toward their loan principal. It is commonly used for home loans, car loans, and personal loans.
+</p>
+
+<h2>How EMI Prepayment Works</h2>
+
+<p>
+When you prepay a portion of your loan principal, the outstanding loan amount reduces. This lowers the interest calculated on the remaining balance, which ultimately reduces the total interest payable.
+</p>
+
+<h2>Example</h2>
+
+<p>
+If you take a loan of ₹10,00,000 for 10 years at 8% interest and make a prepayment of ₹1,00,000, the calculator will show how much interest you save over the remaining tenure.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+
+<p>
+This calculator helps borrowers plan smarter loan repayment strategies and reduce the overall cost of borrowing by making timely prepayments.
+</p>
+
+</div>
