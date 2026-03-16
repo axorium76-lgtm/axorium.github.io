@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win Rate Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Win Rate Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate the percentage of winning trades in your trading strategy.</p>
+
+<input type="number" id="wins" class="tool-input" placeholder="Number of Winning Trades">
+<input type="number" id="losses" class="tool-input" placeholder="Number of Losing Trades">
+
+<button onclick="calculateWinRate()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculateWinRate(){
+
+let wins=parseFloat(document.getElementById("wins").value)
+let losses=parseFloat(document.getElementById("losses").value)
+
+if(isNaN(wins)||isNaN(losses)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let total=wins+losses
+
+if(total===0){
+document.getElementById("result").innerHTML="Total trades must be greater than zero."
+return
+}
+
+let winRate=(wins/total)*100
+
+document.getElementById("result").innerHTML=
+"Total Trades: "+total+
+"<br><strong>Win Rate: "+winRate.toFixed(2)+"%</strong>"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Win Rate Calculator?</h2>
+<p>A Win Rate Calculator helps traders determine the percentage of trades that were profitable compared to the total number of trades executed.</p>
+
+<h2>How Win Rate Works</h2>
+<p>The win rate measures trading accuracy. It compares winning trades against the total number of trades including both wins and losses.</p>
+
+<h2>Example</h2>
+<p>If a trader makes 60 winning trades and 40 losing trades, the win rate would be 60%.</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>Understanding win rate helps traders evaluate the effectiveness of their trading strategy and improve their risk management decisions.</p>
+
+  </div>
