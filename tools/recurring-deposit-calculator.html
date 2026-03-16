@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recurring Deposit Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+
+</nav>
+
+<section class="tools-section">
+
+<h1>Recurring Deposit Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate maturity amount and interest earned on recurring deposits.</p>
+
+<input type="number" id="monthly" class="tool-input" placeholder="Monthly Deposit Amount (₹)">
+
+<input type="number" id="rate" class="tool-input" placeholder="Annual Interest Rate (%)">
+
+<input type="number" id="months" class="tool-input" placeholder="Deposit Duration (Months)">
+
+<button onclick="calculateRD()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateRD(){
+
+let monthly=parseFloat(document.getElementById("monthly").value)
+
+let rate=parseFloat(document.getElementById("rate").value)
+
+let months=parseFloat(document.getElementById("months").value)
+
+if(isNaN(monthly)||isNaN(rate)||isNaN(months)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let r=rate/100/12
+
+let maturity=monthly*((Math.pow(1+r,months)-1)/r)*(1+r)
+
+let invested=monthly*months
+
+let interest=maturity-invested
+
+document.getElementById("result").innerHTML=
+
+"Total Investment: ₹"+invested.toFixed(2)+
+"<br>Interest Earned: ₹"+interest.toFixed(2)+
+"<br><strong>Maturity Value: ₹"+maturity.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Recurring Deposit Calculator?</h2>
+
+<p>
+A Recurring Deposit Calculator helps investors estimate the maturity amount and interest earned from a recurring deposit account. In an RD account, a fixed amount is deposited every month for a specific period and earns interest.
+</p>
+
+<h2>How Recurring Deposit Calculation Works</h2>
+
+<p>
+The calculator uses compound interest formulas to determine the maturity value of monthly deposits over the chosen time period based on the interest rate offered by banks.
+</p>
+
+<h2>Example</h2>
+
+<p>
+If you deposit ₹5,000 every month for 24 months at an interest rate of 7%, the calculator will show the total invested amount, interest earned, and maturity value at the end of the investment period.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+
+<p>
+A Recurring Deposit Calculator helps individuals plan disciplined savings and estimate future returns from RD accounts offered by banks and financial institutions.
+</p>
+
+  </div>
