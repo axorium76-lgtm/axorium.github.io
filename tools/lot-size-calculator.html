@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lot Size Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Lot Size Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate optimal lot size based on account risk.</p>
+
+<input type="number" id="balance" class="tool-input" placeholder="Account Balance (₹)">
+<input type="number" id="risk" class="tool-input" placeholder="Risk Percentage (%)">
+<input type="number" id="stoploss" class="tool-input" placeholder="Stop Loss (Points)">
+
+<select id="asset" class="tool-input">
+<option value="1">Stocks</option>
+<option value="10">Forex</option>
+<option value="5">Crypto</option>
+</select>
+
+<button onclick="calculateLot()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculateLot(){
+
+let balance=parseFloat(document.getElementById("balance").value)
+let risk=parseFloat(document.getElementById("risk").value)
+let stoploss=parseFloat(document.getElementById("stoploss").value)
+let multiplier=parseFloat(document.getElementById("asset").value)
+
+if(isNaN(balance)||isNaN(risk)||isNaN(stoploss)||stoploss<=0){
+document.getElementById("result").innerHTML="Please enter valid values."
+return
+}
+
+let riskAmount=balance*(risk/100)
+
+let lotSize=(riskAmount/stoploss)*multiplier
+
+document.getElementById("result").innerHTML=
+"<strong>Recommended Lot Size: "+lotSize.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Lot Size Calculator?</h2>
+<p>A Lot Size Calculator helps traders determine the correct position size based on their account balance, risk tolerance, and stop loss distance.</p>
+
+<h2>Why Lot Size Matters</h2>
+<p>Trading with the correct lot size ensures that traders maintain proper risk management and avoid excessive losses.</p>
+
+<h2>Example</h2>
+<p>If a trader has ₹1,00,000 in their account and risks 2% per trade with a stop loss of 50 points, the calculator estimates the optimal lot size.</p>
+
+<h2>Who Should Use It?</h2>
+<p>Forex traders, stock traders, and crypto traders can use this tool to maintain disciplined position sizing.</p>
+
+  </div>
