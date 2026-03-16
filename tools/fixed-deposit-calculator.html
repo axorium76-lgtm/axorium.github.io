@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fixed Deposit Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+
+</nav>
+
+<section class="tools-section">
+
+<h1>Fixed Deposit Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate maturity amount and interest earned on your fixed deposit.</p>
+
+<input type="number" id="principal" class="tool-input" placeholder="Investment Amount (₹)">
+
+<input type="number" id="rate" class="tool-input" placeholder="Annual Interest Rate (%)">
+
+<input type="number" id="years" class="tool-input" placeholder="Investment Duration (Years)">
+
+<button onclick="calculateFD()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateFD(){
+
+let principal=parseFloat(document.getElementById("principal").value)
+
+let rate=parseFloat(document.getElementById("rate").value)
+
+let years=parseFloat(document.getElementById("years").value)
+
+if(isNaN(principal)||isNaN(rate)||isNaN(years)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let maturity=principal*Math.pow((1+rate/100),years)
+
+let interest=maturity-principal
+
+document.getElementById("result").innerHTML=
+
+"Investment Amount: ₹"+principal.toFixed(2)+
+"<br>Interest Earned: ₹"+interest.toFixed(2)+
+"<br><strong>Maturity Amount: ₹"+maturity.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Fixed Deposit Calculator?</h2>
+
+<p>
+A Fixed Deposit Calculator helps investors calculate the maturity amount and interest earned on a fixed deposit investment. It allows users to estimate returns before investing in a bank or financial institution.
+</p>
+
+<h2>How Fixed Deposit Calculation Works</h2>
+
+<p>
+The maturity value of a fixed deposit depends on the principal amount, the interest rate offered by the bank, and the duration of the investment. The calculator uses compound interest to determine the final amount.
+</p>
+
+<h2>Example</h2>
+
+<p>
+If you invest ₹1,00,000 at an interest rate of 7% for 5 years, the maturity value will be approximately ₹1,40,255, meaning you earn around ₹40,255 in interest.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+
+<p>
+A Fixed Deposit Calculator allows investors to compare different interest rates and durations to maximize their returns. It is widely used by individuals planning safe and stable investments.
+</p>
+
+  </div>
