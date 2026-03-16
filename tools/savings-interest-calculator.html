@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savings Interest Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Savings Interest Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate interest earned on savings account balances.</p>
+
+<input type="number" id="principal" class="tool-input" placeholder="Initial Amount (₹)">
+<input type="number" id="rate" class="tool-input" placeholder="Annual Interest Rate (%)">
+<input type="number" id="years" class="tool-input" placeholder="Time Period (Years)">
+
+<button onclick="calculateSavings()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculateSavings(){
+
+let principal=parseFloat(document.getElementById("principal").value)
+let rate=parseFloat(document.getElementById("rate").value)
+let years=parseFloat(document.getElementById("years").value)
+
+if(isNaN(principal)||isNaN(rate)||isNaN(years)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let interest=principal*(rate/100)*years
+let total=principal+interest
+
+document.getElementById("result").innerHTML=
+"Interest Earned: ₹"+interest.toFixed(2)+
+"<br><strong>Total Balance: ₹"+total.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Savings Interest Calculator?</h2>
+<p>A Savings Interest Calculator helps individuals estimate the interest earned on money kept in a savings account over a specific period.</p>
+
+<h2>How Savings Interest Works</h2>
+<p>Banks pay interest on the balance maintained in savings accounts. This calculator estimates the interest earned based on the deposit amount, interest rate, and time period.</p>
+
+<h2>Example</h2>
+<p>If you keep ₹50,000 in a savings account with an annual interest rate of 4% for 2 years, the calculator shows the interest earned and the final balance.</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>This calculator helps users understand how their savings grow over time and plan better financial decisions.</p>
+
+  </div>
