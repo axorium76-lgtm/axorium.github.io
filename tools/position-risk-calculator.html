@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Position Risk Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Position Risk Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate potential loss if stop loss is triggered.</p>
+
+<input type="number" id="entry" class="tool-input" placeholder="Entry Price">
+
+<input type="number" id="stop" class="tool-input" placeholder="Stop Loss Price">
+
+<input type="number" id="size" class="tool-input" placeholder="Position Size">
+
+<button onclick="calculatePositionRisk()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculatePositionRisk(){
+
+let entry=parseFloat(document.getElementById("entry").value)
+let stop=parseFloat(document.getElementById("stop").value)
+let size=parseFloat(document.getElementById("size").value)
+
+if(isNaN(entry)||isNaN(stop)||isNaN(size)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let risk=Math.abs(entry-stop)*size
+
+document.getElementById("result").innerHTML=
+"<strong>Position Risk: "+risk.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Position Risk Calculator?</h2>
+<p>A Position Risk Calculator helps traders determine the potential loss if their stop loss is triggered during a trade.</p>
+
+<h2>How Position Risk Works</h2>
+<p>The calculator measures the difference between the entry price and stop loss price and multiplies it by the position size.</p>
+
+<h2>Example</h2>
+<p>If a trader enters at ₹100, sets a stop loss at ₹95, and buys 100 shares, the total risk would be ₹500.</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>This tool helps traders control losses and manage risk before entering a trade.</p>
+
+                                                                                                                               </div>
