@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drawdown Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Drawdown Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate the percentage drawdown from peak trading capital.</p>
+
+<input type="number" id="peak" class="tool-input" placeholder="Peak Account Balance (₹)">
+<input type="number" id="low" class="tool-input" placeholder="Lowest Balance After Loss (₹)">
+
+<button onclick="calculateDrawdown()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculateDrawdown(){
+
+let peak=parseFloat(document.getElementById("peak").value)
+let low=parseFloat(document.getElementById("low").value)
+
+if(isNaN(peak)||isNaN(low)||peak<=0){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let drawdown=((peak-low)/peak)*100
+
+document.getElementById("result").innerHTML=
+"<strong>Maximum Drawdown: "+drawdown.toFixed(2)+"%</strong>"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Drawdown Calculator?</h2>
+<p>A Drawdown Calculator measures the percentage decline in a trading account from its highest value to its lowest value before recovery.</p>
+
+<h2>Why Drawdown Matters</h2>
+<p>Drawdown shows the risk level of a trading strategy. Lower drawdowns indicate better risk management.</p>
+
+<h2>Example</h2>
+<p>If your trading account reached ₹1,00,000 and later dropped to ₹75,000, your drawdown would be 25%.</p>
+
+<h2>How Traders Use It</h2>
+<p>Professional traders track drawdown to ensure their strategy maintains sustainable risk levels over time.</p>
+
+  </div>
