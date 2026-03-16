@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payroll Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+
+</nav>
+
+<section class="tools-section">
+
+<h1>Payroll Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate employee net salary after deductions.</p>
+
+<input type="number" id="salary" class="tool-input" placeholder="Monthly Gross Salary (₹)">
+
+<input type="number" id="deductions" class="tool-input" placeholder="Total Deductions (₹)">
+
+<button onclick="calculatePayroll()">Calculate Payroll</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculatePayroll(){
+
+let salary=parseFloat(document.getElementById("salary").value)
+
+let deductions=parseFloat(document.getElementById("deductions").value)
+
+if(isNaN(salary)||isNaN(deductions)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let netSalary=salary-deductions
+
+document.getElementById("result").innerHTML=
+
+"Gross Salary: ₹"+salary.toFixed(2)+
+"<br>Total Deductions: ₹"+deductions.toFixed(2)+
+"<br><strong>Net Salary: ₹"+netSalary.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Payroll Calculator?</h2>
+
+<p>
+A Payroll Calculator is a financial tool used by businesses, employees, and HR professionals to determine the net salary of an employee after deductions such as taxes, provident fund contributions, insurance, and other benefits.
+</p>
+
+<h2>How Payroll Calculation Works</h2>
+
+<p>
+Payroll calculation starts with the gross salary, which is the total earnings before deductions. Various deductions such as income tax, employee provident fund (EPF), insurance contributions, and other company benefits are subtracted to determine the net salary.
+</p>
+
+<h2>Example</h2>
+
+<p>
+If an employee earns a gross salary of ₹60,000 per month and has ₹8,000 in deductions, the net salary will be ₹52,000.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+
+<p>
+A Payroll Calculator simplifies salary calculations for employers and employees. It ensures accurate payroll processing, helps businesses manage compensation efficiently, and provides employees with a clear understanding of their take-home salary.
+</p>
+
+  </div>
