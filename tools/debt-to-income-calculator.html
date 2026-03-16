@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Debt to Income Ratio Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+
+</nav>
+
+<section class="tools-section">
+
+<h1>Debt-to-Income Ratio Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate your debt-to-income ratio to understand your financial health.</p>
+
+<input type="number" id="income" class="tool-input" placeholder="Monthly Income (₹)">
+
+<input type="number" id="debt" class="tool-input" placeholder="Total Monthly Debt Payments (₹)">
+
+<button onclick="calculateDTI()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateDTI(){
+
+let income=parseFloat(document.getElementById("income").value)
+
+let debt=parseFloat(document.getElementById("debt").value)
+
+if(isNaN(income)||isNaN(debt)||income<=0){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let ratio=(debt/income)*100
+
+let status=""
+
+if(ratio<20){
+status="Excellent Financial Health"
+}else if(ratio<36){
+status="Good Financial Position"
+}else if(ratio<50){
+status="Risky – High Debt Level"
+}else{
+status="Very Risky – Loan Approval Difficult"
+}
+
+document.getElementById("result").innerHTML=
+
+"Debt-to-Income Ratio: "+ratio.toFixed(2)+"%"+
+"<br><strong>Status: "+status+"</strong>"
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Debt-to-Income Ratio Calculator?</h2>
+
+<p>
+A Debt-to-Income (DTI) Ratio Calculator helps individuals determine how much of their monthly income goes toward paying debts. Lenders use this ratio to evaluate whether a borrower can handle additional loan payments.
+</p>
+
+<h2>How Debt-to-Income Ratio Works</h2>
+
+<p>
+The ratio compares total monthly debt obligations with total monthly income. A lower ratio means better financial stability and higher chances of loan approval.
+</p>
+
+<h2>Example</h2>
+
+<p>
+If your monthly income is ₹60,000 and your total monthly debt payments are ₹15,000, your debt-to-income ratio would be 25%.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+
+<p>
+This calculator helps individuals understand their financial health and determine whether they are in a good position to apply for a loan or reduce existing debt.
+</p>
+
+  </div>
