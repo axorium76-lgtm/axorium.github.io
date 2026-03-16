@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan Eligibility Calculator | AXORIUM</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">AXORIUM</div>
+
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+
+</nav>
+
+<section class="tools-section">
+
+<h1>Loan Eligibility Calculator</h1>
+
+<div class="tool-card">
+
+<p>Estimate the maximum loan amount you may qualify for based on your income.</p>
+
+<input type="number" id="income" class="tool-input" placeholder="Monthly Income (₹)">
+
+<input type="number" id="rate" class="tool-input" placeholder="Interest Rate (%)">
+
+<input type="number" id="years" class="tool-input" placeholder="Loan Tenure (Years)">
+
+<button onclick="calculateEligibility()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXORIUM
+</footer>
+
+<script>
+
+function calculateEligibility(){
+
+let income=parseFloat(document.getElementById("income").value)
+
+let rate=parseFloat(document.getElementById("rate").value)
+
+let years=parseFloat(document.getElementById("years").value)
+
+if(isNaN(income)||isNaN(rate)||isNaN(years)){
+document.getElementById("result").innerHTML="Please enter valid numbers."
+return
+}
+
+let emi=income*0.5
+
+let r=rate/100/12
+
+let months=years*12
+
+let loan=(emi*(Math.pow(1+r,months)-1))/(r*Math.pow(1+r,months))
+
+document.getElementById("result").innerHTML=
+
+"Eligible EMI: ₹"+emi.toFixed(2)+
+"<br><strong>Estimated Loan Eligibility: ₹"+loan.toFixed(2)+"</strong>"
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Loan Eligibility Calculator?</h2>
+
+<p>
+A Loan Eligibility Calculator helps individuals estimate how much loan amount they may qualify for based on their income, interest rate, and loan tenure.
+</p>
+
+<h2>How Loan Eligibility is Calculated</h2>
+
+<p>
+Most banks allow a certain percentage of a borrower's monthly income to be used for EMI payments. This calculator estimates the loan amount based on an EMI affordability rule and the chosen loan tenure and interest rate.
+</p>
+
+<h2>Example</h2>
+
+<p>
+If your monthly income is ₹50,000 and you can afford an EMI of ₹25,000, the calculator estimates the loan amount you may qualify for depending on the interest rate and loan tenure.
+</p>
+
+<h2>Why This Tool is Useful</h2>
+
+<p>
+This calculator helps borrowers plan their finances and understand their borrowing capacity before applying for a home loan, car loan, or personal loan.
+</p>
+
+  </div>
