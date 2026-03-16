@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pip Value Calculator | AXORIUM</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">AXORIUM</div>
+<ul class="nav-links">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../tools.html">Tools</a></li>
+</ul>
+</nav>
+
+<section class="tools-section">
+<h1>Pip Value Calculator</h1>
+
+<div class="tool-card">
+
+<p>Calculate the value of one pip in Forex trading.</p>
+
+<input type="number" id="lot" class="tool-input" placeholder="Lot Size">
+
+<input type="number" id="rate" class="tool-input" placeholder="Exchange Rate">
+
+<select id="pair" class="tool-input">
+<option value="0.0001">Standard Pair (EUR/USD, GBP/USD)</option>
+<option value="0.01">JPY Pair (USD/JPY, EUR/JPY)</option>
+</select>
+
+<button onclick="calculatePip()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+</section>
+
+<footer>© 2026 AXORIUM</footer>
+
+<script>
+
+function calculatePip(){
+
+let lot=parseFloat(document.getElementById("lot").value)
+let rate=parseFloat(document.getElementById("rate").value)
+let pipSize=parseFloat(document.getElementById("pair").value)
+
+if(isNaN(lot)||isNaN(rate)||rate<=0){
+document.getElementById("result").innerHTML="Please enter valid values."
+return
+}
+
+let pipValue=(lot*pipSize)/rate
+
+document.getElementById("result").innerHTML=
+"<strong>Pip Value: "+pipValue.toFixed(4)+"</strong>"
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div class="tool-explanation">
+
+<h2>What is a Pip Value Calculator?</h2>
+<p>A Pip Value Calculator helps Forex traders determine how much money they gain or lose for each pip movement in a currency pair.</p>
+
+<h2>How Pip Value Works</h2>
+<p>The pip value depends on the lot size traded and the exchange rate of the currency pair.</p>
+
+<h2>Example</h2>
+<p>If a trader opens a 1 lot position on EUR/USD and the pip value is $10, every 1 pip movement results in a $10 profit or loss.</p>
+
+<h2>Why This Tool is Useful</h2>
+<p>This calculator helps Forex traders understand trade value and manage risk effectively.</p>
+
+  </div>
